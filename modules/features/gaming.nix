@@ -47,8 +47,24 @@
         steam-run
         heroic
         steamtinkerlaunch
-        prismlauncher
+        (prismlauncher.override {
+          additionalPrograms = [
+            vlc
+            temurin-bin
+          ];
+          additionalLibs = [
+            vlc
+            temurin-bin
+          ];
+        })
         self.packages.${pkgs.system}.hyprism
+        easyeffects
+        rose-pine-cursor
+        protonup-qt
+        hydralauncher
+        mindustry
+        vintagestoryPackages.rustique
+        vintagestoryPackages.vs-launcher
 
         dxvk
         gamescope

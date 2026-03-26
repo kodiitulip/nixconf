@@ -8,9 +8,11 @@
     }:
     {
       imports = [
-        # self.nixosModules.extra_hjem
-        # self.nixosModules.gtk
+        self.nixosModules.hjem
+        self.nixosModules.gtk
+        self.nixosModules.git
         self.nixosModules.nix
+        self.nixosModules.nushell
       ];
 
       users.users.${config.preferences.user.name} = {

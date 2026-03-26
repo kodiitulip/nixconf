@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
 {
   flake.nixosModules.nix =
     { pkgs, ... }:
@@ -21,11 +21,28 @@
         nix-ld.enable = true;
       };
 
-      nix.settings.experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
+      nix = {
+        settings = {
+          auto-optimise-store = true;
+          experimental-features = [
+            "nix-command"
+            "flakes"
+          ];
+        };
+
+        optimise.automatic = true;
+
+        gc = {
+          automatic = true;
+          dates = "weekly";
+          options = "-d";
+        };
+      };
       nixpkgs.config.allowUnfree = true;
+      rum.programs.nix-your-shell = {
+        integrations.nushell.enable = true;
+        enable = true;
+      };
 
       environment.systemPackages = with pkgs; [
         # Nix tooling
@@ -35,6 +52,8 @@
         alejandra
         manix
         nix-inspect
+        self.packages.${pkgs.system}.nh
+        self.packages.${pkgs.system}.qalc
       ];
     };
 }

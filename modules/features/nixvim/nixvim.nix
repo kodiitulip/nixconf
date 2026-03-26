@@ -64,7 +64,7 @@
             expandtab = true;
             smartcase = true;
             ignorecase = true;
-            shell = lib.getExe pkgs.nushell; # TODO: Change it for enviroment
+            shell = lib.getExe pkgs.nushell;
           };
           extraPackages = with pkgs; [
             # base
