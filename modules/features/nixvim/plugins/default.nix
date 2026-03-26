@@ -1,0 +1,33 @@
+{
+  # INFO: Always update this list when adding/removing files
+  imports = [
+    ./lsp
+    ./aerial.nix
+    ./autopairs.nix
+    ./blink.nix
+    ./bufferline.nix
+    ./gitsigns.nix
+    ./lualine.nix
+    ./direnv.nix
+    ./nix-develop.nix
+    ./noice.nix
+    ./neoscroll.nix
+    ./notify.nix
+    ./rustaceanvim.nix
+    ./smear-cursor.nix
+    ./snacks.nix
+    ./treesitter.nix
+    ./ts-comments.nix
+    ./whichkey.nix
+    ./yanky.nix
+    ./mini.nix
+    ./todo-comments.nix
+    ./flash.nix
+    ./colorizer.nix
+    ./dial.nix
+    ./inc-rename.nix
+    ./persistence.nix
+    ./grug-far.nix
+    ./gdscript.nix
+  ];
+}
