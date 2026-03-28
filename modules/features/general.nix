@@ -13,6 +13,7 @@
         self.nixosModules.git
         self.nixosModules.nix
         self.nixosModules.nushell
+        self.nixosModules.starship
       ];
 
       users.users.${config.preferences.user.name} = {

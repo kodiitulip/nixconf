@@ -8,11 +8,10 @@
     {
       imports = [
         self.nixosModules.gtk
-        self.nixosModules.nushell
         # self.nixosModules.wallpaper
 
         self.nixosModules.pipewire
-        # self.nixosModules.firefox
+        self.nixosModules.zen
       ];
 
       programs.niri = {

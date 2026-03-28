@@ -12,7 +12,6 @@
         self.nixosModules.general
         self.nixosModules.desktop
 
-        self.nixosModules.zen
         self.nixosModules.discord
         self.nixosModules.pear-desktop
 

@@ -68,6 +68,7 @@
             pkgs.ffmpeg-full
             pkgs.yt-dlp
             pkgs.lazygit
+            pkgs.starship
 
             # wrapped
             self'.packages.neovim
