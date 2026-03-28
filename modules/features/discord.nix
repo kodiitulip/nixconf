@@ -2,11 +2,12 @@
   flake.nixosModules.discord =
     { pkgs, ... }:
     {
-      environment.systemPackages = [
-        (pkgs.discord.override {
-          withOpenASAR = true;
-          withVencord = true;
-        })
+      environment.systemPackages = with pkgs; [
+        vesktop
+        # (discord.override {
+        #   withOpenASAR = true;
+        #   withVencord = true;
+        # })
       ];
     };
 }
