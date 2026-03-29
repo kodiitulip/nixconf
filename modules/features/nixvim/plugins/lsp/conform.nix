@@ -163,17 +163,10 @@
           tmpfile_format = ".conform.$RANDOM.$FILENAME";
           condition.__raw = ''
             function(self, ctx)
-              local fd = vim.loop.fs_open(ctx.filepath, "r", 438)
-              if not fd then return false end
-              local stat = vim.loop.fs_fstat(fd)
-              if not stat then
-                vim.loop.fs_close(fd)
-                return false
-              end
-              local data = vim.loop.fs_read(fd, stat.size, 0)
-              vim.loop.fs_close(fd)
-              if not data then return false end 
-              return data:find("rsx!", 1, true) ~= nil
+              local lines = vim.fn.readfile(ctx)
+              if #lines == 0 then return false end
+              local content = table.concat(lines, "\n")
+              return content:find(substring, 1, true) ~= nil
             end
           '';
         };
