@@ -9,6 +9,7 @@
       typescriptreact = [ "eslint_d" ];
       markdown = [ "markdownlint-cli2" ];
       gdscript = [ "gdlint" ];
+      rust = [ "clippy" ];
     };
   };
 

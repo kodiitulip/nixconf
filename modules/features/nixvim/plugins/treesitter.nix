@@ -1,5 +1,5 @@
-_: {
-  # extraPlugins = [ treesitter-mcfunction ];
+{ pkgs, ... }:
+{
   plugins = {
     treesitter = {
       enable = true;
@@ -11,8 +11,42 @@ _: {
         indent.enable = true;
         folding.enable = true;
       };
-      # grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars ++ [ treesitter-mcfunction ];
-      # languageRegister.mcfunction = "mcfunction";
+      grammarPackages = with pkgs.vimPlugins.nvim-treesitter-parsers; [
+        nu
+        tsx
+        bash
+        lua
+        nix
+        rust
+        ini
+        json
+        yaml
+        toml
+        css
+        html
+        robots_txt
+        java
+        diff
+        typst
+        typescript
+        javascript
+        jsdoc
+        json5
+        regex
+        query
+        kitty
+        vimdoc
+        python
+        luadoc
+        groovy
+        desktop
+        markdown
+        markdown_inline
+        gitignore
+        gdscript
+        gdshader
+        godot_resource
+      ];
     };
     treesitter-textobjects = {
       enable = true;

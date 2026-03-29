@@ -180,6 +180,7 @@
           root_markers = [ ".git" ];
         };
       };
+      statix.enable = true;
       spyglassmc_language_server = {
         enable = true;
         package = null;
@@ -225,7 +226,38 @@
       };
       ts_ls.enable = true;
       emmet_language_server.enable = true;
-      tailwindcss.enable = true;
+      tailwindcss = {
+        enable = true;
+        config = {
+          filetypes = [
+            # "aspnetcorerazor" "astro" "astro-markdown" "blade" "clojure" "django-html" "htmldjango" "edge" "eelixir" "elixir" "ejs" "erb" "eruby" "gohtml" "gohtmltmpl" "haml" "handlebars" "hbs" "html" "htmlangular" "html-eex" "heex" "jade" "leaf" "liquid" "markdown" "mdx" "mustache" "njk" "nunjucks" "php" "razor" "slim" "twig" "css" "less" "postcss" "sass" "scss" "stylus" "sugarss" "javascript" "javascriptreact" "reason" "rescript" "typescript" "typescriptreact" "vue" "svelte" "templ"
+            "rust"
+          ];
+          settings = {
+            tailwindCSS = {
+              emmetCompletions = true;
+              classFunctions = [
+                "tw"
+                "clsx"
+                "tw\\.[a-z-]+"
+                "class:"
+                "cva"
+              ];
+              classAttributes = [
+                # "class"
+                # "className"
+                # "class:list"
+                # "classList"
+                # "ngClass"
+                "class:"
+              ];
+              includeLanguages = {
+                rust = "html";
+              };
+            };
+          };
+        };
+      };
       rust_analyzer.enable = true;
       marksman.enable = true;
       jdtls.enable = true;
