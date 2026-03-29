@@ -155,7 +155,6 @@
           command = "dx";
           args = [
             "fmt"
-            "-s"
             "-f"
             "$FILENAME"
           ];
