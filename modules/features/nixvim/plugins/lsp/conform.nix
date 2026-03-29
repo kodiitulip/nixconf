@@ -160,13 +160,12 @@
             "$FILENAME"
           ];
           stdin = false;
-          tmpfile_format = ".conform.$RANDOM.$FILENAME";
           condition.__raw = ''
             function(self, ctx)
-              local lines = vim.fn.readfile(ctx)
+              local lines = vim.api.nvim_buf_get_lines(ctx.buf, 0, -1, false)
               if #lines == 0 then return false end
               local content = table.concat(lines, "\n")
-              return content:find(substring, 1, true) ~= nil
+              return string.find(content, "rsx!")
             end
           '';
         };
