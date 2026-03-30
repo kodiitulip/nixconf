@@ -43,7 +43,7 @@
             "5.." = "z ../../../../";
 
             garbage-collect = "sudo nix-collect-garbage -d";
-            rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#nixos";
+            rebuild-hades = "sudo nixos-rebuild switch --flake ~/nixconf#hades";
 
             julia-join = "sudo zerotier-cli join bb720a5aaedee869";
             julia-leave = "sudo zerotier-cli leave bb720a5aaedee869";
@@ -96,14 +96,10 @@
             def --env set-env [name, value] { load-env { $name: $value } }
             def --env unset-env [name] { hide-env $name }
 
-            $env.VISUAL = "nvim"
-            $env.EDITOR = "nvim"
-            $env.SUDO_PROMPT = (^${lib.getExe pkgs.starship} prompt --profile=sudo_prompt --terminal-width (term size).columns)
-            $env.STARSHIP_LOG = "error";
 
             # Edit NixOS Config
             def "config nix" [] {
-              cd ~/nixos-dotfiles; nvim; cd -
+              cd ~/nixconf; nvim; cd -
             }
 
             def "bumpversion packwiz" [version: string] {
@@ -115,6 +111,12 @@
             }
 
             export-env { load-env {
+                VISUAL = "nvim"
+                EDITOR = "nvim"
+                SUDO_PROMPT = (^${lib.getExe pkgs.starship} prompt --profile=sudo_prompt --terminal-width (term size).columns)
+                STARSHIP_LOG = "error"
+                NU_EXPERIMENTAL_OPTIONS = "native-clip"
+
                 PROMPT_MULTILINE_INDICATOR: (^${lib.getExe pkgs.starship} prompt --continuation)
                 TRANSIENT_PROMPT_MULTILINE_INDICATOR: (^${lib.getExe pkgs.starship} prompt --continuation)
 
