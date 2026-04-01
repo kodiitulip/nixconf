@@ -9,6 +9,7 @@
       environment.systemPackages = with pkgs; [
         kdePackages.kate
         godot
+        penpot-desktop
       ];
 
       files.".local/share/godot/export_templates" = {

@@ -226,7 +226,78 @@
       };
       ts_ls.enable = true;
       emmet_language_server.enable = true;
-      tailwindcss.enable = true;
+      tailwindcss = {
+        enable = true;
+        config = {
+          filetypes = [
+            "aspnetcorerazor"
+            "astro"
+            "astro-markdown"
+            "blade"
+            "clojure"
+            "django-html"
+            "htmldjango"
+            "edge"
+            "eelixir"
+            "elixir"
+            "ejs"
+            "erb"
+            "eruby"
+            "gohtml"
+            "gohtmltmpl"
+            "haml"
+            "handlebars"
+            "hbs"
+            "html"
+            "htmlangular"
+            "html-eex"
+            "heex"
+            "jade"
+            "leaf"
+            "liquid"
+            "markdown"
+            "mdx"
+            "mustache"
+            "njk"
+            "nunjucks"
+            "php"
+            "razor"
+            "slim"
+            "twig"
+            "css"
+            "less"
+            "postcss"
+            "sass"
+            "scss"
+            "stylus"
+            "sugarss"
+            "javascript"
+            "javascriptreact"
+            "reason"
+            "rescript"
+            "typescript"
+            "typescriptreact"
+            "vue"
+            "svelte"
+            "templ"
+            "rust"
+          ];
+          settings = {
+            tailwindCSS = {
+              includeLanguages."rust" = "html";
+              experimental.classRegex = [ "class\\s*:\\s*\"([^\"]*)" ];
+              classAttributes = [
+                "class"
+                "className"
+                "class:list"
+                "classList"
+                "ngClass"
+                "class\\s*:\\s*\"([^\"]*)"
+              ];
+            };
+          };
+        };
+      };
       rust_analyzer.enable = true;
       marksman.enable = true;
       jdtls.enable = true;
