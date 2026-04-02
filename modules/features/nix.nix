@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 {
   flake.nixosModules.nix =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
       imports = [
         inputs.nix-index-database.nixosModules.nix-index
@@ -44,6 +44,15 @@
         enable = true;
       };
 
+      programs.nh = {
+        enable = true;
+        clean = {
+          enable = true;
+          extraArgs = "--keep 3 --keep-since 3d";
+        };
+        flake = "/home/${config.preferences.user.name}/nixconf";
+      };
+
       environment.systemPackages = with pkgs; [
         # Nix tooling
         nil
@@ -52,7 +61,6 @@
         alejandra
         manix
         nix-inspect
-        self.packages.${pkgs.system}.nh
         self.packages.${pkgs.system}.qalc
       ];
     };

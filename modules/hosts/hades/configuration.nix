@@ -88,18 +88,22 @@
       networking = {
         hostName = "hades";
         networkmanager.enable = true;
-
-        hosts."172.24.145.167" = [ "julia-servers" ];
+        hosts = {
+          "172.24.145.167" = [ "julia-servers" ];
+          "localhost:8080" = [ "dioxus-default" ];
+          "localhost:3000" = [ "nextjs-default" ];
+        };
 
         nftables.enable = true;
-        firewall = {
-          enable = true;
-          allowedTCPPorts = [
-            80
-            443
-            3000
-          ];
-        };
+
+        firewall.enable = true;
+        firewall.allowedTCPPorts = [
+          80
+          443
+          3000
+          8080
+        ];
+
       };
 
       hardware.cpu.amd.updateMicrocode = true;
