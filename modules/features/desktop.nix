@@ -11,7 +11,6 @@
         # self.nixosModules.wallpaper
 
         self.nixosModules.pipewire
-        self.nixosModules.zen
       ];
 
       programs.niri = {
@@ -19,7 +18,12 @@
         package = selfpkgs.niri;
       };
 
+      preferences.autostart = [ selfpkgs.noctalia-shell ];
+
       environment.systemPackages = [
+        selfpkgs.zen
+        selfpkgs.terminal
+        pkgs.kdePackages.dolphin
       ];
 
       fonts.packages = with pkgs; [

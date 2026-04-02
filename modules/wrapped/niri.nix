@@ -5,6 +5,7 @@
       config,
       lib,
       pkgs,
+      self',
       ...
     }:
     {
@@ -130,7 +131,7 @@
                 {
                   key = "z";
                   desc = "Zen Browser";
-                  cmd = "zen";
+                  cmd = "${lib.getExe self'.packages.zen}";
                 }
                 {
                   key = "d";
