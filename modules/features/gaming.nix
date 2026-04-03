@@ -48,13 +48,15 @@
         heroic
         steamtinkerlaunch
         (prismlauncher.override {
-          additionalPrograms = [
-            vlc
-            temurin-bin
-          ];
-          additionalLibs = [
-            vlc
-            temurin-bin
+          additionalPrograms = [ vlc ];
+          additionalLibs = [ vlc ];
+          jdks = [
+            jdk25
+            jdk21
+            jdk17
+            temurin-bin-25
+            temurin-bin-21
+            temurin-bin-17
           ];
         })
         self.packages.${pkgs.system}.hyprism
