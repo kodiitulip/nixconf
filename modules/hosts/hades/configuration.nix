@@ -59,7 +59,6 @@
           binfmt = true;
         };
       };
-
       boot = {
         kernelPackages = pkgs.linuxPackages_latest;
 
@@ -71,8 +70,11 @@
 
         supportedFilesystems.ntfs = true;
 
-        # kernelParams = ["quiet" "amd_pstate=guided" "processor.max_cstate=1"];
-        kernelParams = [ "quiet" ];
+        kernelParams = [
+          "quiet"
+          "udev.log_level=3"
+          "systemd.show_status=auto"
+        ];
         kernelModules = [
           "mt7921e"
           "coretemp"
@@ -81,17 +83,30 @@
         ];
 
         binfmt.emulatedSystems = [ "aarch64-linux" ];
+        plymouth = {
+          enable = true;
+          theme = "pixels";
+          themePackages = with pkgs; [
+            (adi1090x-plymouth-themes.override {
+              selected_themes = [ "pixels" ];
+            })
+          ];
+        };
+        consoleLogLevel = 3;
+        initrd = {
+          verbose = false;
+          kernelModules = [ "amdgpu" ];
+        };
+        loader.timeout = 0;
       };
-
-      boot.plymouth.enable = true;
 
       networking = {
         hostName = "hades";
         networkmanager.enable = true;
         hosts = {
           "172.24.145.167" = [ "julia-servers" ];
-          "localhost:8080" = [ "dioxus-default" ];
-          "localhost:3000" = [ "nextjs-default" ];
+          "localhost:8080" = [ "dioxusdev" ];
+          "localhost:3000" = [ "nextjsdev" ];
         };
 
         nftables.enable = true;
@@ -121,7 +136,6 @@
       hardware.graphics.enable = true;
 
       services.xserver.videoDrivers = [ "amdgpu" ];
-      boot.initrd.kernelModules = [ "amdgpu" ];
 
       system.stateVersion = "25.05"; # WARN: DO NOT CHANGE! NO NEED TO!
     };
