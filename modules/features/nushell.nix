@@ -134,6 +134,11 @@
                   )
                 }
             }}
+
+            source ${
+              pkgs.runCommand "carapace-init-nu" { }
+                ''${lib.getExe pkgs.carapace} _carapace nushell | sed 's|"/homeless-shelter|$"($env.HOME)|g' >> "$out"''
+            }
           '';
         };
       };

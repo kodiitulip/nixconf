@@ -7,6 +7,7 @@
         yt-dlp
         mpv
         vlc
+        protonmail-desktop
       ];
 
       files.".local/share/godot/export_templates" = {

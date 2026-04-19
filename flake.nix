@@ -10,16 +10,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # home-manager = {
-    #   url = "github:nix-community/home-manager";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     hjem.follows = "hjem-rum/hjem";
     hjem-rum = {
       url = "github:snugnug/hjem-rum";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hjem.follows = "hjem";
     };
 
     wrappers.url = "github:Lassulus/wrappers";

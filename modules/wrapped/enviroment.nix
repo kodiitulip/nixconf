@@ -36,47 +36,53 @@
 
         environment = inputs.wrappers.lib.wrapPackage {
           inherit pkgs;
-          package = pkgs.nushell;
-          runtimeInputs = [
-            # nix
-            pkgs.nil
-            pkgs.nixd
-            pkgs.statix
-            pkgs.alejandra
-            pkgs.manix
-            pkgs.nix-inspect
-            self'.packages.nh
+          package = self'.packages.nushell;
+          runtimeInputs =
+            (with self'.packages; [
+              neovim
+              qalc
+              nh
+            ])
+            ++ (with pkgs; [
+              # nix
+              nil
+              nixd
+              statix
+              alejandra
+              manix
+              nix-inspect
 
-            # other
-            pkgs.file
-            pkgs.unzip
-            pkgs.zip
-            pkgs.p7zip
-            pkgs.killall
-            pkgs.sshfs
-            pkgs.fzf
-            pkgs.htop
-            pkgs.btop
-            pkgs.fd
-            pkgs.zoxide
-            pkgs.dust
-            pkgs.ripgrep
-            pkgs.neofetch
-            pkgs.tree-sitter
-            pkgs.imagemagick
-            pkgs.imv
-            pkgs.ffmpeg-full
-            pkgs.yt-dlp
-            pkgs.lazygit
-            pkgs.starship
-
-            # wrapped
-            self'.packages.neovim
-            self'.packages.qalc
-          ];
+              # other
+              file
+              unzip
+              zip
+              p7zip
+              killall
+              sshfs
+              fzf
+              htop
+              btop
+              fd
+              zoxide
+              dust
+              ripgrep
+              neofetch
+              tree-sitter
+              imagemagick
+              imv
+              ffmpeg-full
+              yt-dlp
+              lazygit
+              starship
+            ]);
           env = {
             EDITOR = lib.getExe self'.packages.neovim;
           };
+        };
+
+        nix-check-bin = pkgs.writeShellApplication {
+          name = "nix-check-bin";
+          text = ''$EDITOR "$(nix build "$1" --no-link --print-out-paths)/bin"'';
         };
       };
     };

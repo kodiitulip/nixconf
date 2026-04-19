@@ -20,11 +20,14 @@
 
       preferences.autostart = [ selfpkgs.noctalia-shell ];
 
-      environment.systemPackages = [
-        selfpkgs.zen
-        selfpkgs.terminal
-        pkgs.kdePackages.dolphin
-      ];
+      environment.systemPackages =
+        (with selfpkgs; [
+          zen
+          terminal
+        ])
+        ++ (with pkgs; [
+          kdePackages.dolphin
+        ]);
 
       fonts.packages = with pkgs; [
         nerd-fonts.jetbrains-mono
