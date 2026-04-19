@@ -1,0 +1,100 @@
+[public]
+address = "0.0.0.0:25565"
+
+#version = "1.19.3"
+#protocol = 761
+
+[server]
+address = "127.0.0.1:25566"
+directory = "."
+# WARN: if using a bash script read: https://git.io/JMIKH
+command = "./run.sh"
+freeze_process = true
+wake_on_start = false
+wake_on_crash = true
+probe_on_start = true
+
+forge = false
+
+#start_timeout = 300
+#stop_timeout = 150
+
+#wake_whitelist = true
+
+#block_banned_ips = true
+
+#drop_banned_ips = false
+
+#send_proxy_v2 = false
+
+[time]
+sleep_after = 60
+minimum_online_time = 60
+
+[motd]
+sleeping = "☠ Server is sleeping\n§2☻ Join to start it up"
+starting = "§2☻ Server is starting...\n§7⌛ Please wait..."
+stopping = "☠ Server going to sleep...\n⌛ Please wait..."
+
+from_server = true
+
+[join]
+methods = [ "hold", "kick" ]
+
+[join.kick]
+starting = "Server is starting... §c♥§r\n\nThis may take some time.\n\nPlease try to reconnect in a minute."
+stopping = "Server is going to sleep... §7☠§r\n\nPlease try to reconnect in a minute to wake it again."
+
+[join.hold]
+timeout = 25
+
+[join.forward]
+address = "127.0.0.1:25565"
+send_proxy_v2 = false
+
+[join.lobby]
+# Lobby occupation method.
+# The client joins a fake lobby server with an empty world, floating in space.
+# A message is overlayed on screen to notify the server is starting.
+# The client will be teleported to the real server once it is ready.
+# This may keep the client occupied forever if no timeout is set.
+# Consumes client, not allowing other join methods afterwards.
+# See: https://git.io/JMIi4
+
+# !!! WARNING !!!
+# This is highly experimental, incomplete and unstable.
+# This may break the game and crash clients.
+# Don't enable this unless you know what you're doing.
+#
+# - Server must be in offline mode
+# - Server must use Minecraft version 1.16.3 to 1.17.1 (tested with 1.17.1)
+# - Server must use vanilla Minecraft
+#   - May work with Forge, enable in config, depends on used mods, test before use
+#   - Does not work with other mods, such as FTB
+
+# Maximum time in seconds in the lobby while the server starts.
+#timeout = 600
+
+# Message banner in lobby shown to client.
+#message = "§2Server is starting\n§7⌛ Please wait..."
+
+# Sound effect to play when server is ready.
+#ready_sound = "block.note_block.chime"
+
+[lockout]
+#enabled = false
+#message = "Server is closed §7☠§r\n\nPlease try to reconnect in a minute."
+
+[rcon]
+#enabled = false # default: false, true on Windows
+#port = 25575
+#password = ""
+#randomize_password = true
+#send_proxy_v2 = false
+
+[advanced]
+rewrite_server_properties = true
+
+[config]
+# WARN: Don't change unless you know what you're doing.
+version = "0.2.10"
