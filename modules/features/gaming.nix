@@ -81,21 +81,23 @@
 
       services.zerotierone.enable = true;
 
-      # persistance.cache.directories = [
-      #   ".local/share/Hytale"
-      #   ".local/share/hytale-launcher"
-      #
-      #   ".local/share/Steam"
-      #   ".local/share/bottles"
-      #   ".local/share/PrismLauncher"
-      #   ".config/r2modmanPlus-local"
-      #
-      #   ".local/share/Terraria"
-      #
-      #   "Games"
-      #
-      #   ".config/heroic"
-      # ];
+      persistance.cache.directories = [
+        ".local/share/HyPrism"
+        ".local/share/Hytale"
+        ".local/share/hytale-launcher"
+        ".config/HyPrism"
+
+        ".local/share/Steam"
+        ".local/share/bottles"
+        ".local/share/PrismLauncher"
+        ".config/r2modmanPlus-local"
+
+        ".local/share/Terraria"
+
+        "Games"
+
+        ".config/heroic"
+      ];
     };
 
   perSystem =

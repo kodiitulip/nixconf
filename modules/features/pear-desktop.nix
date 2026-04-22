@@ -6,8 +6,8 @@
         pkgs.pear-desktop
       ];
 
-      # persistance.cache.directories = [
-      #   ".config/YouTube Music"
-      # ];
+      persistance.cache.directories = [
+        ".config/YouTube Music"
+      ];
     };
 }

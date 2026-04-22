@@ -9,7 +9,8 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    impermanence.url = "github:nix-community/impermanence";
+    persist-retro.url = "github:Geometer1729/persist-retro";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";

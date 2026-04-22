@@ -7,9 +7,9 @@
         "SUPER + d"."s".package = pkgs.pwvucontrol;
       };
 
-      # persistance.cache.directories = [
-      #   ".local/state/wireplumber"
-      # ];
+      persistance.cache.directories = [
+        ".local/state/wireplumber"
+      ];
 
       security.rtkit.enable = true;
       services.pipewire = {
