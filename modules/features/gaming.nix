@@ -39,6 +39,7 @@
           enable = true;
           settings.gameVersions = [
             pkgs.vintagestoryPackages.latest
+            pkgs.vintagestoryPackages.v1-21-6
           ];
         };
       };

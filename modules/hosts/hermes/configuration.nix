@@ -7,16 +7,17 @@
   flake.nixosModules.hermes =
     { pkgs, ... }:
     {
-      imports = [
-        self.nixosModules.base
-        self.nixosModules.general
-        self.nixosModules.desktop
+      imports = with self.nixosModules; [
+        base
+        general
+        desktop
 
-        self.nixosModules.impermanence
+        impermanence
 
-        self.nixosModules.nixvim
-        self.nixosModules.gaming
-        self.nixosModules.powersave
+        nixvim
+        gaming
+        gaming-servers
+        powersave
 
         # disko
         inputs.disko.nixosModules.disko
@@ -94,8 +95,7 @@
       networking = {
         hostName = "hermes";
         networkmanager.enable = true;
-        hosts = {
-        };
+        hosts = { };
 
         nftables.enable = true;
         firewall = {

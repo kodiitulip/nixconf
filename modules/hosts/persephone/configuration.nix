@@ -7,20 +7,20 @@
   flake.nixosModules.persephone =
     { pkgs, ... }:
     {
-      imports = [
-        self.nixosModules.base
-        self.nixosModules.general
-        self.nixosModules.desktop
+      imports = with self.nixosModules; [
+        base
+        general
+        desktop
 
-        self.nixosModules.impermanence
+        impermanence
 
-        self.nixosModules.discord
-        self.nixosModules.pear-desktop
+        discord
+        pear-desktop
 
-        self.nixosModules.art
-        self.nixosModules.dev
-        self.nixosModules.gaming
-        self.nixosModules.powersave
+        art
+        dev
+        gaming
+        powersave
 
         # disko
         inputs.disko.nixosModules.disko
