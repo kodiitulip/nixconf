@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.hostHades =
+  flake.nixosModules.persephone =
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [

@@ -1,13 +1,16 @@
 { inputs, ... }:
 {
   perSystem =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
+    let
+      username = config.preferences.user.name;
+    in
     {
       packages = {
         noctalia-shell = inputs.wrapper-modules.wrappers.noctalia-shell.wrap {
           inherit pkgs;
           env = {
-            "NOCTALIA_CACHE_DIR" = "/tmp/kodie-noctalia-cache/";
+            "NOCTALIA_CACHE_DIR" = "/tmp/${username}-noctalia-cache/";
           };
           colors = {
             mError = "#fb4934";
@@ -340,7 +343,7 @@
               audioCodec = "opus";
               audioSource = "default_output";
               colorRange = "limited";
-              directory = "/home/kodie/Videos";
+              directory = "/home/${username}/Videos";
               frameRate = 60;
               quality = "very_high";
               showCursor = true;

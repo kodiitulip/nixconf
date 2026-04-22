@@ -1,7 +1,15 @@
 { self, inputs, ... }:
 {
   flake.wrapperModules.nushell =
-    { pkgs, lib, ... }:
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
+    let
+      username = config.preferences.user.name;
+    in
     {
       config = {
         "config.nu".content = ''
@@ -21,7 +29,7 @@
           $env.config.edit_mode = "vi"
           $env.config.show_banner = false
           $env.config.use_kitty_protocol = true
-          $env.PATH = ($env.PATH | append '/home/kodie/.nuscripts' | append '/home/kodie/.bun/bin')
+          $env.PATH = ($env.PATH | append '/home/${username}/.nuscripts' | append '/home/${username}/.bun/bin')
 
           def --env get-env [name] { $env | get $name }
           def --env set-env [name, value] { load-env { $name: $value } }
@@ -122,7 +130,7 @@
           alias "5.." = z ../../../../
 
           alias garbage-collect = sudo nix-collect-garbage -d
-          alias rebuild-hades = sudo nixos-rebuild switch --flake ~/nixconf#hades
+          alias rebuild-persephone = sudo nixos-rebuild switch --flake ~/nixconf#persephone
           alias julia-join = sudo zerotier-cli join bb720a5aaedee869
           alias julia-leave = sudo zerotier-cli leave bb720a5aaedee869
           alias ztls = sudo zerotier-cli listnetworks

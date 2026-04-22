@@ -164,7 +164,7 @@ _: {
               icon = " ";
               key = "c";
               desc = "Config";
-              action = ":lua Snacks.dashboard.pick('files'; {cwd = '/home/kodie/nixos-dotfiles'})";
+              action.__raw = ''Snacks.dashboard.pick('files'; {cwd = vim.env.NH_OS_FLAKE or vim.fn.expand("~/nixconf")})'';
             }
             {
               icon = " ";

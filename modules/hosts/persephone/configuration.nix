@@ -1,10 +1,10 @@
 { self, inputs, ... }:
 {
-  flake.nixosConfigurations.hades = inputs.nixpkgs.lib.nixosSystem {
-    modules = [ self.nixosModules.hostHades ];
+  flake.nixosConfigurations.persephone = inputs.nixpkgs.lib.nixosSystem {
+    modules = [ self.nixosModules.persephone ];
   };
 
-  flake.nixosModules.hostHades =
+  flake.nixosModules.persephone =
     { pkgs, ... }:
     {
       imports = [
@@ -101,7 +101,7 @@
       };
 
       networking = {
-        hostName = "hades";
+        hostName = "persephone";
         networkmanager.enable = true;
         hosts = {
           "172.24.145.167" = [ "julia-servers" ];
@@ -110,15 +110,15 @@
         };
 
         nftables.enable = true;
-
-        firewall.enable = true;
-        firewall.allowedTCPPorts = [
-          80
-          443
-          3000
-          8080
-        ];
-
+        firewall = {
+          enable = true;
+          allowedTCPPorts = [
+            80
+            443
+            3000
+            8080
+          ];
+        };
       };
 
       hardware.cpu.amd.updateMicrocode = true;
@@ -128,6 +128,13 @@
         flatpak.enable = true;
         udisks2.enable = true;
         printing.enable = true;
+
+        zerotierone = {
+          joinNetworks = [
+            "bb720a5aaedee869"
+            "b9a18a606fecb004"
+          ];
+        };
       };
 
       xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];

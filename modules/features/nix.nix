@@ -61,6 +61,7 @@
         alejandra
         manix
         nix-inspect
+        nh
         self.packages.${pkgs.system}.qalc
       ];
     };

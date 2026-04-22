@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.hostHades =
+  flake.nixosModules.persephone =
     {
       config,
       lib,
