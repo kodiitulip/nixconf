@@ -22,9 +22,6 @@
         boot.tmp.cleanOnBoot = lib.mkDefault true;
 
         environment.persistence = {
-          # "/persist/userdata".users = persistentData;
-          # "/persist/usercache".users = persistentCache;
-
           "/persist/userdata".users."${cfg.user}" = {
             inherit (cfg.data) directories files;
           };
