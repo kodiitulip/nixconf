@@ -21,10 +21,13 @@
         openFirewall = true;
       };
 
+      persistance.cache.directories = [ "/srv/minecraft-servers" ];
+
       services.minecraft-servers = {
         enable = false;
         eula = true;
         openFirewall = true;
+        dataDir = "/srv/minecraft-servers";
 
         servers.fossiled-steam = {
           enable = false;
@@ -38,6 +41,7 @@
             motd = "Os Caba";
             rcon.port = 25575;
             enable-rcon = true;
+            rcon.password = "fossil";
             simulation-distance = 8;
             view-distance = 12;
           };

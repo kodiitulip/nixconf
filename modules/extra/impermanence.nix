@@ -40,6 +40,7 @@
               "/var/lib/systemd/coredump"
               "/etc/NetworkManager/system-connections"
               "/tmp"
+              "/home/${config.preferences.user.name}/nixconf"
 
               "/var/lib/zerotier-one"
               # {

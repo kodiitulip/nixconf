@@ -5,7 +5,7 @@
   };
 
   flake.nixosModules.hermes =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
       imports = with self.nixosModules; [
         base
@@ -15,7 +15,7 @@
         impermanence
 
         nixvim
-        gaming
+        # gaming
         gaming-servers
         powersave
 
@@ -42,9 +42,10 @@
         vim
       ];
 
-      persistance.cache.directories = [
-        ".config/obs-studio"
-      ];
+      persistance = {
+        enable = true;
+        username = config.preferences.user.name;
+      };
 
       programs = {
         # corectrl.enable = true;
