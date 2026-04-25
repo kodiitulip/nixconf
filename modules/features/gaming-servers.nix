@@ -39,9 +39,9 @@
             allow-flight = true;
             difficulty = "hard";
             motd = "Os Caba";
-            rcon.port = 25575;
+            "rcon.port" = 25575;
             enable-rcon = true;
-            rcon.password = "fossil";
+            "rcon.password" = "fossil";
             simulation-distance = 8;
             view-distance = 12;
           };
@@ -49,8 +49,8 @@
           symlinks =
             let
               modpack = pkgs.fetchPackwizModpack {
-                url = "https://github.com/blossom-garden/fossilized-steam/raw/refs/tags/1.0.1/pack.toml";
-                packHash = "";
+                url = "https://github.com/blossom-garden/fossilized-steam/raw/refs/tags/2.0.0/pack.toml";
+                packHash = "sha256-miGmWh03eYmzz2Jsb6OZHuila4XMM6/yGmhNN7XtSFc=";
               };
             in
             {
