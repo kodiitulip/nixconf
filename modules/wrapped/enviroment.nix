@@ -8,18 +8,20 @@
   perSystem =
     {
       pkgs,
-      self',
       ...
     }:
+    let
+      selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
+    in
     {
       packages = {
         desktop =
           (inputs.wrappers.wrapperModules.niri.apply (_: {
             inherit pkgs;
             imports = [ self.wrapperModules.niri ];
-            terminal = lib.getExe self'.packages.terminal;
+            terminal = lib.getExe selfpkgs.terminal;
             env = {
-              EDITOR = lib.getExe self'.packages.neovim;
+              EDITOR = lib.getExe selfpkgs.neovim;
             };
           })).wrapper;
 
@@ -31,52 +33,50 @@
           (inputs.wrappers.wrapperModules.kitty.apply {
             inherit pkgs;
             imports = [ self.wrapperModules.kitty ];
-            shell = lib.getExe self'.packages.environment;
+            shell = lib.getExe selfpkgs.environment;
           }).wrapper;
 
         environment = inputs.wrappers.lib.wrapPackage {
           inherit pkgs;
-          package = self'.packages.nushell;
-          runtimeInputs =
-            (with self'.packages; [
-              neovim
-              qalc
-              nh
-            ])
-            ++ (with pkgs; [
-              # nix
-              nil
-              nixd
-              statix
-              alejandra
-              manix
-              nix-inspect
+          package = selfpkgs.nushell;
+          runtimeInputs = with pkgs; [
+            selfpkgs.neovim
+            selfpkgs.qalc
 
-              # other
-              file
-              unzip
-              zip
-              p7zip
-              killall
-              sshfs
-              fzf
-              htop
-              btop
-              fd
-              zoxide
-              dust
-              ripgrep
-              neofetch
-              tree-sitter
-              imagemagick
-              imv
-              ffmpeg-full
-              yt-dlp
-              lazygit
-              starship
-            ]);
+            # nix
+            nil
+            nixd
+            statix
+            alejandra
+            manix
+            nix-inspect
+            nh
+
+            # other
+            file
+            unzip
+            zip
+            p7zip
+            killall
+            sshfs
+            fzf
+            htop
+            btop
+            fd
+            zoxide
+            dust
+            ripgrep
+            fastfetch
+            tree-sitter
+            imagemagick
+            imv
+            ffmpeg-full
+            yt-dlp
+            lazygit
+            starship
+          ];
           env = {
-            EDITOR = lib.getExe self'.packages.neovim;
+            EDITOR = lib.getExe selfpkgs.neovim;
           };
         };
 

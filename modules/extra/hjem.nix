@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.nixosModules.hjem =
-    { config, lib, ... }:
+    { config, ... }:
     let
       user = config.preferences.user.name;
       profile = config.preferences.user.profile-image;
@@ -23,7 +23,7 @@
             user = "${user}";
           };
 
-          files.".face.icon".source = lib.mkAfter (lib.optionals (profile != null) profile);
+          files.".face.icon".source = profile;
 
           clobberByDefault = true;
         };

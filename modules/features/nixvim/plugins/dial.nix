@@ -1,3 +1,5 @@
 {
-  plugins.dial.enable = true;
+  flake.nixosModules.nixvim-conf = _: {
+    plugins.dial.enable = true;
+  };
 }

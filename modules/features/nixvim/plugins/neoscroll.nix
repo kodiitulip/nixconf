@@ -1,6 +1,5 @@
 {
-  plugins.neoscroll = {
-    enable = true;
-    
+  flake.nixosModules.nixvim-conf = _: {
+    plugins.neoscroll.enable = true;
   };
 }

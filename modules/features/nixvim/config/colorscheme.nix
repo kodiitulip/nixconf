@@ -1,8 +1,10 @@
-_: {
-  colorschemes = {
-    rose-pine = {
-      enable = true;
-      autoLoad = true;
+{
+  flake.nixosModules.nixvim-conf = _: {
+    colorschemes = {
+      rose-pine = {
+        enable = true;
+        autoLoad = true;
+      };
     };
   };
 }

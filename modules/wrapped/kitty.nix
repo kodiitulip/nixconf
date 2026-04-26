@@ -20,13 +20,15 @@
         settings = {
           enable_audio_bell = "no";
 
-          font_size = 15;
-          font_family = "JetBrainsMono Nerd Font";
-
-          cursor_text_color = "background";
+          font_size = 10;
+          font_family = "FiraCode Nerd Font Mono";
 
           allow_remote_control = "yes";
           shell_integration = "enabled";
+
+          tab_bar_style = "powerline";
+          tab_powerline_style = "slanted";
+          tab_title_template = ''" {index} {title} "'';
 
           cursor_trail = 3;
 
@@ -45,41 +47,46 @@
             "ctrl+shift+t new_tab"
           ];
 
+          foreground = self.theme.base05;
           background = self.theme.base00;
-          foreground = self.theme.base07;
 
-          cursor = self.theme.base07;
+          cursor = self.theme.base0E;
+          cursor_text_color = self.theme.base05;
 
-          selection_foreground = self.theme.base02;
-          selection_background = self.theme.base01;
+          selection_foreground = self.theme.base05;
+          selection_background = self.theme.base0D;
 
-          active_tab_foreground = self.theme.base0B;
-          active_tab_background = self.theme.base03;
-          inactive_tab_background = self.theme.base01;
+          active_tab_foreground = self.theme.base05;
+          active_tab_background = self.theme.base02;
+          inactive_tab_foreground = self.theme.base03;
+          inactive_tab_background = self.theme.base00;
 
-          color0 = self.theme.base00;
-          color8 = self.theme.base02;
+          active_border_color = self.theme.base09;
+          inactive_border_color = self.theme.base0D;
 
-          color1 = self.theme.base08;
-          color9 = self.theme.base08;
+          color0 = self.theme.base02;
+          color8 = self.theme.base03;
 
-          color2 = self.theme.base0B;
-          color10 = self.theme.base0B;
+          color1 = self.theme.base06;
+          color9 = self.theme.base06;
 
-          color3 = self.theme.base0A;
-          color11 = self.theme.base0A;
+          color2 = self.theme.base09;
+          color10 = self.theme.base09;
 
-          color4 = self.theme.base0D;
-          color12 = self.theme.base0D;
+          color3 = self.theme.base07;
+          color11 = self.theme.base07;
 
-          color5 = self.theme.base0E;
-          color13 = self.theme.base0E;
+          color4 = self.theme.base0A;
+          color12 = self.theme.base0A;
 
-          color6 = self.theme.base0C;
-          color14 = self.theme.base0C;
+          color5 = self.theme.base0B;
+          color13 = self.theme.base0B;
 
-          color7 = self.theme.base03;
-          color15 = self.theme.base03;
+          color6 = self.theme.base08;
+          color14 = self.theme.base08;
+
+          color7 = self.theme.base05;
+          color15 = self.theme.base05;
         };
       };
     };

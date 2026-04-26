@@ -1,15 +1,7 @@
 { self, inputs, ... }:
 {
   flake.wrapperModules.nushell =
-    {
-      pkgs,
-      lib,
-      config,
-      ...
-    }:
-    let
-      username = config.preferences.user.name;
-    in
+    { config, lib, ... }:
     {
       config = {
         "config.nu".content = ''
@@ -29,7 +21,6 @@
           $env.config.edit_mode = "vi"
           $env.config.show_banner = false
           $env.config.use_kitty_protocol = true
-          $env.PATH = ($env.PATH | append '/home/${username}/.nuscripts' | append '/home/${username}/.bun/bin')
 
           def --env get-env [name] { $env | get $name }
           def --env set-env [name, value] { load-env { $name: $value } }
@@ -37,7 +28,7 @@
 
           # Edit NixOS Config
           def "config nix" [] {
-            cd ~/nixconf; nvim; cd -
+            cd ($env.NH_OS_FLAKE? | default ~/nixconf); nvim; cd -
           }
 
           def greeter []: nothing -> string {
@@ -48,30 +39,22 @@
 
           print (greeter)
 
-          def "bumpversion packwiz" [version: string] {
-            if (not ('./pack.toml' | path exists)) {
-              print "No pack.toml found"
-              return
-            }
-            cat ./pack.toml | str replace -r 'version = "(.*)"' $'version = "($version)"' | save -f ./pack.toml
-          }
-
           export-env { load-env {
-              VISUAL = "nvim"
-              EDITOR = "nvim"
-              SUDO_PROMPT = (^${lib.getExe pkgs.starship} prompt --profile=sudo_prompt --terminal-width (term size).columns)
-              STARSHIP_LOG = "error"
-              NU_EXPERIMENTAL_OPTIONS = "native-clip"
+              VISUAL: "nvim"
+              EDITOR: "nvim"
+              SUDO_PROMPT: (^${lib.getExe config.pkgs.starship} prompt --profile=sudo_prompt --terminal-width (term size).columns)
+              STARSHIP_LOG: "error"
+              NU_EXPERIMENTAL_OPTIONS: "native-clip"
 
-              PROMPT_MULTILINE_INDICATOR: (^${lib.getExe pkgs.starship} prompt --continuation)
-              TRANSIENT_PROMPT_MULTILINE_INDICATOR: (^${lib.getExe pkgs.starship} prompt --continuation)
+              PROMPT_MULTILINE_INDICATOR: (^${lib.getExe config.pkgs.starship} prompt --continuation)
+              TRANSIENT_PROMPT_MULTILINE_INDICATOR: (^${lib.getExe config.pkgs.starship} prompt --continuation)
 
               TRANSIENT_PROMPT_INDICATOR: ""
 
               TRANSIENT_PROMPT_COMMAND: {||
                 (
                   let cmd_duration = if $env.CMD_DURATION_MS == "0823" { 0 } else { $env.CMD_DURATION_MS };
-                  ^${lib.getExe pkgs.starship} prompt
+                  ^${lib.getExe config.pkgs.starship} prompt
                     --profile=transient
                     --cmd-duration $cmd_duration
                     $"--status=($env.LAST_EXIT_CODE)"
@@ -81,11 +64,17 @@
               }
           }}
 
-          source ${pkgs.runCommand "zoxide-init-nu" { } ''${lib.getExe pkgs.zoxide} init nushell >> "$out"''}
-          use ${pkgs.runCommand "starship-init-nu" { } ''${lib.getExe pkgs.starship} init nu >> "$out" ''}
           source ${
-            pkgs.runCommand "carapace-init-nu" { }
-              ''${lib.getExe pkgs.carapace} _carapace nushell | sed 's|"/homeless-shelter|$"($env.HOME)|g' >> "$out"''
+            config.pkgs.runCommand "zoxide-init-nu" { }
+              ''${lib.getExe config.pkgs.zoxide} init nushell >> "$out"''
+          }
+          use ${
+            config.pkgs.runCommand "starship-init-nu" { }
+              ''${lib.getExe config.pkgs.starship} init nu >> "$out" ''
+          }
+          source ${
+            config.pkgs.runCommand "carapace-init-nu" { }
+              ''${lib.getExe config.pkgs.carapace} _carapace nushell | sed 's|"/homeless-shelter|$"($env.HOME)|g' >> "$out"''
           }
 
           $env.config = ($env.config? | default {})
@@ -94,7 +83,7 @@
             $env.config.hooks.pre_prompt?
             | default []
             | append {||
-              ${lib.getExe pkgs.direnv} export json
+              ${lib.getExe config.pkgs.direnv} export json
               | from json --strict
               | default {}
               | items {|key, value|
@@ -116,15 +105,14 @@
             }
           )
 
-          alias btw = 'print "I use NixOS, btw"'
-          alias vi = "nvim"
-          alias vim = "nvim"
+          alias btw = print "I use NixOS, btw"
+          alias vi = nvim
+          alias vim = nvim
 
           alias e = exit
-          alias c = clear
           alias lg = lazygit
           alias reload = exec nu
-          alias gw = "./gradlew"
+          alias gw = ./gradlew
           alias cr = cargo run
           alias crq = cr --quiet
           alias cb = cargo build
@@ -138,7 +126,7 @@
           alias "5.." = z ../../../../
 
           alias garbage-collect = sudo nix-collect-garbage -d
-          alias rebuild-persephone = sudo nixos-rebuild switch --flake ~/nixconf#persephone
+          alias rebuild-persephone = sudo nixos-rebuild switch --flake ($env.NH_OS_FLAKE? | default ~/nixconf)#persephone
           alias julia-join = sudo zerotier-cli join bb720a5aaedee869
           alias julia-leave = sudo zerotier-cli leave bb720a5aaedee869
           alias ztls = sudo zerotier-cli listnetworks

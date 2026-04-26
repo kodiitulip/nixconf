@@ -1,5 +1,5 @@
 {
-  flakes.nixosModules.base =
+  flake.nixosModules.base =
     { lib, ... }:
     {
       options.persistance = {

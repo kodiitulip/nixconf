@@ -1,6 +1,5 @@
 {
-  plugins.direnv = {
-    enable = true;
-    
+  flake.nixosModules.nixvim-conf = _: {
+    plugins.direnv.enable = true;
   };
 }

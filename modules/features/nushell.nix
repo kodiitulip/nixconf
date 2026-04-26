@@ -4,12 +4,8 @@
     {
       pkgs,
       lib,
-      config,
       ...
     }:
-    let
-      username = config.preferences.user.name;
-    in
     {
       imports = [ self.nixosModules.starship ];
       rum.programs = {
@@ -50,7 +46,7 @@
             "5.." = "z ../../../../";
 
             garbage-collect = "sudo nix-collect-garbage -d";
-            rebuild-persephone = "sudo nixos-rebuild switch --flake ~/nixconf#persephone";
+            rebuild-persephone = "sudo nixos-rebuild switch --flake ($env.NH_OS_FLAKE? | default ~/nixconf)#persephone";
 
             julia-join = "sudo zerotier-cli join bb720a5aaedee869";
             julia-leave = "sudo zerotier-cli leave bb720a5aaedee869";
@@ -97,8 +93,6 @@
           };
 
           extraConfig = ''
-            $env.PATH = ($env.PATH | append '/home/${username}/.nuscripts' | append '/home/${username}/.bun/bin')
-
             def --env get-env [name] { $env | get $name }
             def --env set-env [name, value] { load-env { $name: $value } }
             def --env unset-env [name] { hide-env $name }
@@ -106,7 +100,7 @@
 
             # Edit NixOS Config
             def "config nix" [] {
-              cd ~/nixconf; nvim; cd -
+              cd ($env.NH_OS_FLAKE? | default ~/nixconf); nvim; cd -
             }
 
             def greeter []: nothing -> string {
@@ -117,20 +111,12 @@
 
             print (greeter)
 
-            def "bumpversion packwiz" [version: string] {
-              if (not ('./pack.toml' | path exists)) {
-                print "No pack.toml found"
-                return
-              }
-              cat ./pack.toml | str replace -r 'version = "(.*)"' $'version = "($version)"' | save -f ./pack.toml
-            }
-
             export-env { load-env {
-                VISUAL = "nvim"
-                EDITOR = "nvim"
-                SUDO_PROMPT = (^${lib.getExe pkgs.starship} prompt --profile=sudo_prompt --terminal-width (term size).columns)
-                STARSHIP_LOG = "error"
-                NU_EXPERIMENTAL_OPTIONS = "native-clip"
+                VISUAL: "nvim"
+                EDITOR: "nvim"
+                SUDO_PROMPT: (^${lib.getExe pkgs.starship} prompt --profile=sudo_prompt --terminal-width (term size).columns)
+                STARSHIP_LOG: "error"
+                NU_EXPERIMENTAL_OPTIONS: "native-clip"
 
                 PROMPT_MULTILINE_INDICATOR: (^${lib.getExe pkgs.starship} prompt --continuation)
                 TRANSIENT_PROMPT_MULTILINE_INDICATOR: (^${lib.getExe pkgs.starship} prompt --continuation)
