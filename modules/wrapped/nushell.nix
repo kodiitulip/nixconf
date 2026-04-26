@@ -40,6 +40,14 @@
             cd ~/nixconf; nvim; cd -
           }
 
+          def greeter []: nothing -> string {
+            $"\n\t(ansi '#5BCFFA')Ｈ(ansi '#F5ABB9')ｅ(ansi '#FFFFFF')ｌ(ansi '#F5ABB9')ｌ(ansi '#5BCFFA')ｏ　(ansi '#5BCFFA')Ｋ(ansi '#F5ABB9')ｏ(ansi '#FFFFFF')ｄ(ansi '#F5ABB9')ｉ(ansi '#5BCFFA')ｅ\t(ansi '#5BCFFA') (ansi '#F5ABB9')"
+          }
+
+          def c [] {clear; greeter}
+
+          print (greeter)
+
           def "bumpversion packwiz" [version: string] {
             if (not ('./pack.toml' | path exists)) {
               print "No pack.toml found"

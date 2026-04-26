@@ -21,7 +21,7 @@
       environment.systemPackages =
         (with selfpkgs; [
           zen
-          terminal
+          kitty
         ])
         ++ (with pkgs; [
           kdePackages.dolphin

@@ -14,9 +14,7 @@
           silent = false;
           loadInNixShell = true;
           direnvrcExtra = "";
-          nix-direnv = {
-            enable = true;
-          };
+          nix-direnv.enable = true;
         };
         nix-ld.enable = true;
       };
