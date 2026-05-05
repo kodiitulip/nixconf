@@ -51,7 +51,7 @@
             julia-join = "sudo zerotier-cli join bb720a5aaedee869";
             julia-leave = "sudo zerotier-cli leave bb720a5aaedee869";
 
-            ztls = "sudo zerotier-cli listnetworks";
+            ztls = "sudo zerotier-cli listnetworks | str replace -m -r -a '200 listnetworks ' '' | lines | skip 1 | split column ' ' 'Network ID' 'Name' 'MAC' 'Status' 'Type' 'DEV' 'ZT Assigned IPs'";
           };
 
           plugins = with pkgs.nushellPlugins; [
