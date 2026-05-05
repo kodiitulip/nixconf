@@ -37,6 +37,10 @@
 
           def c [] {clear; greeter}
 
+          def ztls [] {
+            sudo zerotier-cli listnetworks | str replace -m -r -a '200 listnetworks ' "" | lines | skip 1 | split column ' ' 'Network ID' 'Name' 'MAC' 'Status' 'Type' 'DEV' 'ZT Assigned IPs'
+          }
+
           print (greeter)
 
           export-env { load-env {
@@ -129,7 +133,6 @@
           alias rebuild-persephone = sudo nixos-rebuild switch --flake ($env.NH_OS_FLAKE? | default ~/nixconf)#persephone
           alias julia-join = sudo zerotier-cli join bb720a5aaedee869
           alias julia-leave = sudo zerotier-cli leave bb720a5aaedee869
-          alias ztls = sudo zerotier-cli listnetworks | str replace -m -r -a '200 listnetworks ' "" | lines | skip 1 | split column ' ' 'Network ID' 'Name' 'MAC' 'Status' 'Type' 'DEV' 'ZT Assigned IPs'
         '';
       };
     };
