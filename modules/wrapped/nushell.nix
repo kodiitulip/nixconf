@@ -38,7 +38,7 @@
           def c [] {clear; greeter}
 
           def ztls [] {
-            sudo zerotier-cli listnetworks | str replace -m -r -a '200 listnetworks ' "" | lines | skip 1 | split column ' ' 'Network ID' 'Name' 'MAC' 'Status' 'Type' 'DEV' 'ZT Assigned IPs'
+            sudo zerotier-cli listnetworks | str replace -m -r -a '200 listnetworks ' "" | lines | skip 1 | split column ' ' 'id' 'name' 'mac' 'status' 'type' 'dev' 'ip'
           }
 
           print (greeter)
