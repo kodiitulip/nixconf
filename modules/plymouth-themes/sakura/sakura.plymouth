@@ -1,0 +1,9 @@
+[Plymouth Theme]
+Name=sakura
+Description=display pixel art animation of a sakura tree
+Comment=created By Keyitdev.
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/sakura
+ScriptFile=/usr/share/plymouth/themes/sakura/sakura.script

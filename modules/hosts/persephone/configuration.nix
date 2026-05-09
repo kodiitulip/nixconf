@@ -6,6 +6,9 @@
 
   flake.nixosModules.persephone =
     { pkgs, ... }:
+    let
+      selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
+    in
     {
       imports = with self.nixosModules; [
         base
@@ -100,11 +103,9 @@
         binfmt.emulatedSystems = [ "aarch64-linux" ];
         plymouth = {
           enable = true;
-          theme = "pixels";
-          themePackages = with pkgs; [
-            (adi1090x-plymouth-themes.override {
-              selected_themes = [ "pixels" ];
-            })
+          theme = "sakura";
+          themePackages = with selfpkgs; [
+            sakura-plymouth
           ];
         };
         consoleLogLevel = 3;
@@ -159,6 +160,6 @@
 
       services.xserver.videoDrivers = [ "amdgpu" ];
 
-      system.stateVersion = "25.05"; # WARN: DO NOT CHANGE! NO NEED TO!
+      system.stateVersion = "26.05"; # WARN: DO NOT CHANGE! NO NEED TO!
     };
 }
