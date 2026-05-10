@@ -1,7 +1,6 @@
-# TODO: set this to be rose-pine theme instead
-_:
-let
-  theme = {
+{
+  # RoséPine theme
+  flake.theme = {
     base00 = "#191724"; # base
     base01 = "#1f1d2e"; # surface
     base02 = "#26233a"; # overlay
@@ -18,19 +17,5 @@ let
     base0D = "#403d52"; # highlight med
     base0E = "#524f67"; # highlight high
     base0F = "#e0def4"; # text
-  };
-
-  stripHash =
-    name: str:
-    if builtins.substring 0 1 str == "#" then
-      builtins.substring 1 (builtins.stringLength str - 1) str
-    else
-      str;
-
-  themeNoHash = builtins.mapAttrs stripHash theme;
-in
-{
-  flake = {
-    inherit theme themeNoHash;
   };
 }

@@ -15,8 +15,8 @@ let
 
         font = "JetBrainsMono Nerd Font 12";
         background = self.theme.base00;
-        color = self.theme.base06;
-        border = self.theme.base0F;
+        color = self.theme.base05;
+        border = self.theme.base0B;
         separator = " ➜ ";
         border_width = 2;
         corner_r = 15;

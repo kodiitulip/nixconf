@@ -20,9 +20,6 @@
             inherit pkgs;
             imports = [ self.wrapperModules.niri ];
             terminal = lib.getExe selfpkgs.terminal;
-            env = {
-              EDITOR = lib.getExe selfpkgs.neovim;
-            };
           })).wrapper;
 
         neovim = inputs.nixvim.legacyPackages.${pkgs.stdenv.hostPlatform.system}.makeNixvim {

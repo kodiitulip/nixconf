@@ -1,4 +1,6 @@
 {
+  description = "A simple Rust project flake";
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     rust-overlay.url = "github:oxalica/rust-overlay";
@@ -16,7 +18,7 @@
     in
     {
       devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [ toolchain ];
+        packages = [ toolchain ];
 
         RUST_SRC_PATH = "${toolchain}/lib/rustlib/src/rust/library";
       };

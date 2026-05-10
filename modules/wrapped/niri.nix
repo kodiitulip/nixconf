@@ -14,24 +14,42 @@
             self' = self.packages.${config.pkgs.stdenv.hostPlatform.system};
           in
           {
-            prefer-no-csd = null;
+            prefer-no-csd = _: { };
+            screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d %H-%M-%S.png";
+
+            environment = {
+              QT_QPA_PLATFORM = "wayland";
+            };
+
+            cursor = {
+              xcursor-theme = "BreezeX-RosePine-Linux";
+              xcursor-size = 24;
+
+              hide-when-typing = _: { };
+              hide-after-inactive-ms = 1000;
+            };
+
+            hotkey-overlay = {
+              # skip-at-startup = _: { };
+              hide-not-bound = _: { };
+            };
 
             input = {
-              focus-follows-mouse = null;
+              focus-follows-mouse = _: { };
 
               keyboard = {
                 xkb = {
                   layout = "br";
                   options = "compose:rctrl";
                 };
-                numlock = null;
+                numlock = _: { };
                 repeat-rate = 40;
                 repeat-delay = 250;
               };
 
               touchpad = {
-                natural-scroll = null;
-                tap = null;
+                natural-scroll = _: { };
+                tap = _: { };
               };
 
               mouse = {
@@ -40,28 +58,32 @@
             };
 
             binds = {
-              "Mod+Return".spawn = config.terminal;
+              "Mod+Return" = {
+                hotkey-overlay-title = "Open Terminal";
+                repeat = false;
+                spawn = config.terminal;
+              };
 
-              "Mod+Q".close-window = null;
-              "Mod+F".maximize-column = null;
-              "Mod+G".fullscreen-window = null;
-              "Mod+Shift+F".toggle-window-floating = null;
-              "Mod+C".center-column = null;
+              "Mod+Q".close-window = _: { };
+              "Mod+F".maximize-column = _: { };
+              "Mod+G".fullscreen-window = _: { };
+              "Mod+Shift+F".toggle-window-floating = _: { };
+              "Mod+C".center-column = _: { };
 
-              "Mod+H".focus-column-left = null;
-              "Mod+L".focus-column-right = null;
-              "Mod+K".focus-window-up = null;
-              "Mod+J".focus-window-down = null;
+              "Mod+H".focus-column-left = _: { };
+              "Mod+L".focus-column-right = _: { };
+              "Mod+K".focus-window-up = _: { };
+              "Mod+J".focus-window-down = _: { };
 
-              "Mod+Left".focus-column-left = null;
-              "Mod+Right".focus-column-right = null;
-              "Mod+Up".focus-window-up = null;
-              "Mod+Down".focus-window-down = null;
+              "Mod+Left".focus-column-left = _: { };
+              "Mod+Right".focus-column-right = _: { };
+              "Mod+Up".focus-window-up = _: { };
+              "Mod+Down".focus-window-down = _: { };
 
-              "Mod+Shift+H".move-column-left = null;
-              "Mod+Shift+L".move-column-right = null;
-              "Mod+Shift+K".move-window-up = null;
-              "Mod+Shift+J".move-window-down = null;
+              "Mod+Shift+H".move-column-left = _: { };
+              "Mod+Shift+L".move-column-right = _: { };
+              "Mod+Shift+K".move-window-up = _: { };
+              "Mod+Shift+J".move-window-down = _: { };
 
               "Mod+1".focus-workspace = "w0";
               "Mod+2".focus-workspace = "w1";
@@ -84,22 +106,32 @@
               "Mod+Shift+8".move-column-to-workspace = "w7";
               "Mod+Shift+9".move-column-to-workspace = "w8";
               "Mod+Shift+0".move-column-to-workspace = "w9";
-
-              "Mod+S".spawn-sh = "${noctaliaExe} ipc call launcher toggle";
-              "Mod+V".spawn-sh = "${config.pkgs.alsa-utils}/bin/amixer sset Capture toggle";
-
-              "XF86AudioRaiseVolume".spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+";
-              "XF86AudioLowerVolume".spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-";
+              "Mod+S" = {
+                hotkey-overlay-title = "Open App Launcher";
+                spawn-sh = "${noctaliaExe} ipc call launcher toggle";
+              };
+              "Mod+V" = {
+                hotkey-overlay-title = "alsa-utils Capture Toggle";
+                spawn-sh = "${config.pkgs.alsa-utils}/bin/amixer sset Capture toggle";
+              };
+              "XF86AudioRaiseVolume" = {
+                hotkey-overlay-title = "Raise Volume";
+                spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+";
+              };
+              "XF86AudioLowerVolume" = {
+                hotkey-overlay-title = "Lower Volume";
+                spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-";
+              };
 
               "Mod+Ctrl+H".set-column-width = "-5%";
               "Mod+Ctrl+L".set-column-width = "+5%";
               "Mod+Ctrl+J".set-window-height = "-5%";
               "Mod+Ctrl+K".set-window-height = "+5%";
 
-              "Mod+WheelScrollDown".focus-column-left = null;
-              "Mod+WheelScrollUp".focus-column-right = null;
-              "Mod+Ctrl+WheelScrollDown".focus-workspace-down = null;
-              "Mod+Ctrl+WheelScrollUp".focus-workspace-up = null;
+              "Mod+WheelScrollDown".focus-column-left = _: { };
+              "Mod+WheelScrollUp".focus-column-right = _: { };
+              "Mod+Ctrl+WheelScrollDown".focus-workspace-down = _: { };
+              "Mod+Ctrl+WheelScrollUp".focus-workspace-up = _: { };
 
               "Mod+Ctrl+S".spawn-sh =
                 "${lib.getExe config.pkgs.grim} -l 0 - | ${config.pkgs.wl-clipboard}/bin/wl-copy";
@@ -113,6 +145,22 @@
                   text = ''${lib.getExe config.pkgs.grim} -g "$(${lib.getExe config.pkgs.slurp} -w 0)" - | ${config.pkgs.wl-clipboard}/bin/wl-copy'';
                 }
               );
+
+              "Print" = {
+                repeat = false;
+                screenshot = _: { };
+                hotkey-overlay-title = "Screenshot";
+              };
+              "Mod+Print" = {
+                repeat = false;
+                screenshot-window = _: { };
+                hotkey-overlay-title = "Screenshot Window";
+              };
+              "Mod+Alt+Print" = {
+                repeat = false;
+                screenshot-screen = _: { };
+                hotkey-overlay-title = "Screenshot Screen";
+              };
 
               "Mod+d".spawn-sh = self.mkWhichKeyExe config.pkgs [
                 {
@@ -148,7 +196,7 @@
 
               focus-ring = {
                 width = 2;
-                active-color = "#${self.themeNoHash.base09}";
+                active-color = "${self.theme.base09}";
               };
             };
 

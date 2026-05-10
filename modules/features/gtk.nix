@@ -6,24 +6,18 @@
       ...
     }:
     let
-      theme-name = "Gruvbox-Green-Dark-Medium";
-      theme-package = pkgs.gruvbox-gtk-theme.override {
-        colorVariants = [ "dark" ];
-        sizeVariants = [ "standard" ];
-        themeVariants = [ "green" ];
-        tweakVariants = [
-          "medium"
-          "macos"
-        ];
-      };
-
-      icon-theme-package = pkgs.gruvbox-plus-icons;
-      icon-theme-name = "Gruvbox-Plus-Dark";
+      theme-name = "rose-pine-gtk";
+      theme-package = pkgs.rose-pine-gtk-theme;
+      icon-theme-name = "rose-pine-icons";
+      icon-theme-package = pkgs.rose-pine-icon-theme;
+      cursor-theme-name = "BreezeX-RosePine-Linux";
+      cursor-theme-package = pkgs.rose-pine-cursor;
 
       gtksettings = ''
         [Settings]
         gtk-icon-theme-name = ${icon-theme-name}
         gtk-theme-name = ${theme-name}
+        gtk-cursor-theme-name = ${cursor-theme-name}
       '';
     in
     {
@@ -50,6 +44,7 @@
                     "org/gnome/desktop/interface" = {
                       gtk-theme = theme-name;
                       icon-theme = icon-theme-name;
+                      cursor-theme = cursor-theme-name;
                       color-scheme = "prefer-dark";
                     };
                   };
@@ -63,6 +58,7 @@
       environment.systemPackages = [
         theme-package
         icon-theme-package
+        cursor-theme-package
 
         pkgs.gtk3
         pkgs.gtk4
