@@ -126,6 +126,6 @@
 
       hardware.graphics.enable = true;
 
-      system.stateVersion = "25.05"; # WARN: DO NOT CHANGE! NO NEED TO!
+      system.stateVersion = "26.05";
     };
 }

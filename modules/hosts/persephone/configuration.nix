@@ -160,6 +160,6 @@
 
       services.xserver.videoDrivers = [ "amdgpu" ];
 
-      system.stateVersion = "26.05"; # WARN: DO NOT CHANGE! NO NEED TO!
+      system.stateVersion = "26.05";
     };
 }
