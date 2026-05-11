@@ -8,6 +8,7 @@
         default = "kitty";
       };
       config = {
+        v2-settings = true;
         settings =
           let
             noctaliaExe = lib.getExe self.packages.${config.pkgs.stdenv.hostPlatform.system}.noctalia-shell;
@@ -58,10 +59,12 @@
             };
 
             binds = {
-              "Mod+Return" = {
-                hotkey-overlay-title = "Open Terminal";
-                repeat = false;
-                spawn = config.terminal;
+              "Mod+Return" = _: {
+                props = {
+                  hotkey-overlay-title = "Open Terminal";
+                  repeat = false;
+                };
+                content.spawn = config.terminal;
               };
 
               "Mod+Q".close-window = _: { };
@@ -107,20 +110,20 @@
               "Mod+Shift+9".move-column-to-workspace = "w8";
               "Mod+Shift+0".move-column-to-workspace = "w9";
               "Mod+S" = {
-                hotkey-overlay-title = "Open App Launcher";
-                spawn-sh = "${noctaliaExe} ipc call launcher toggle";
+                props.hotkey-overlay-title = "Open App Launcher";
+                content.spawn-sh = "${noctaliaExe} ipc call launcher toggle";
               };
               "Mod+V" = {
-                hotkey-overlay-title = "alsa-utils Capture Toggle";
-                spawn-sh = "${config.pkgs.alsa-utils}/bin/amixer sset Capture toggle";
+                props.hotkey-overlay-title = "alsa-utils Capture Toggle";
+                content.spawn-sh = "${config.pkgs.alsa-utils}/bin/amixer sset Capture toggle";
               };
               "XF86AudioRaiseVolume" = {
-                hotkey-overlay-title = "Raise Volume";
-                spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+";
+                props.hotkey-overlay-title = "Raise Volume";
+                content.spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+";
               };
               "XF86AudioLowerVolume" = {
-                hotkey-overlay-title = "Lower Volume";
-                spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-";
+                props.hotkey-overlay-title = "Lower Volume";
+                content.spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-";
               };
 
               "Mod+Ctrl+H".set-column-width = "-5%";
@@ -146,20 +149,20 @@
                 }
               );
 
-              "Print" = {
-                repeat = false;
-                screenshot = _: { };
-                hotkey-overlay-title = "Screenshot";
+              "Print" = _: {
+                props.repeat = false;
+                props.hotkey-overlay-title = "Screenshot";
+                content.screenshot = _: { };
               };
-              "Mod+Print" = {
-                repeat = false;
-                screenshot-window = _: { };
-                hotkey-overlay-title = "Screenshot Window";
+              "Mod+Print" = _: {
+                props.repeat = false;
+                props.hotkey-overlay-title = "Screenshot Window";
+                content.screenshot-window = _: { };
               };
-              "Mod+Alt+Print" = {
-                repeat = false;
-                screenshot-screen = _: { };
-                hotkey-overlay-title = "Screenshot Screen";
+              "Mod+Alt+Print" = _: {
+                props.repeat = false;
+                props.hotkey-overlay-title = "Screenshot Screen";
+                content.screenshot-screen = _: { };
               };
 
               "Mod+d".spawn-sh = self.mkWhichKeyExe config.pkgs [
