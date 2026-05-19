@@ -48,6 +48,11 @@
         profile-image = ./icon.png;
       };
 
+      users.users.root.openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIlsbUta5cO8PicTkHK/QsGstrJkF0m3mtQbiVwbHWRy"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC5gmq70r9IzcBbS5p9GFQwFAvAhTAeWBkPrLklNPsen"
+      ];
+
       environment.systemPackages = with pkgs; [
         winetricks
         glib
