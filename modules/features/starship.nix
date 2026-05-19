@@ -1,8 +1,8 @@
 {
   flake.nixosModules.starship =
-    { lib, ... }:
+    { lib, config, ... }:
     {
-      rum.programs.starship = {
+      hjem.users.${config.preferences.user.name}.rum.programs.starship = {
         enable = true;
         integrations.nushell.enable = true;
         transience.enable = true;

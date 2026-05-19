@@ -21,9 +21,8 @@
             enable = true;
             directory = "/home/${user}";
             user = "${user}";
+            files.".face.icon".source = profile;
           };
-
-          files.".face.icon".source = profile;
 
           clobberByDefault = true;
         };

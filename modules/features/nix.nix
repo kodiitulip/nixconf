@@ -37,7 +37,7 @@
         };
       };
       nixpkgs.config.allowUnfree = true;
-      rum.programs.nix-your-shell = {
+      hjem.users.${config.preferences.user.name}.rum.programs.nix-your-shell = {
         integrations.nushell.enable = true;
         enable = true;
       };

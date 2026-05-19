@@ -4,6 +4,7 @@
       config,
       lib,
       modulesPath,
+      ...
     }:
     {
       imports = [

@@ -3,10 +3,11 @@
     {
       pkgs,
       lib,
+      config,
       ...
     }:
     {
-      rum.programs = {
+      hjem.users.${config.preferences.user.name}.rum.programs = {
         zoxide = {
           enable = true;
           integrations.nushell.enable = true;

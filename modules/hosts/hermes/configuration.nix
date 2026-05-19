@@ -64,7 +64,7 @@
 
       persistance = {
         enable = true;
-        username = config.preferences.user.name;
+        user = config.preferences.user.name;
       };
 
       programs = {
