@@ -5,7 +5,7 @@
   };
 
   flake.nixosModules.persephone =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     let
       selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
     in
@@ -141,6 +141,17 @@
       hardware.cpu.amd.updateMicrocode = true;
 
       services = {
+        displayManager = {
+          sddm = {
+            enable = true;
+            wayland.enable = true;
+          };
+          autoLogin = {
+            enable = true;
+            user = config.preferences.user.name;
+          };
+        };
+
         hardware.openrgb.enable = true;
         flatpak.enable = true;
         udisks2.enable = true;
@@ -152,14 +163,14 @@
             "b9a18a606fecb004" # blossom-garden
           ];
         };
+
+        xserver.videoDrivers = [ "amdgpu" ];
       };
 
       xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
       xdg.portal.enable = true;
 
       hardware.graphics.enable = true;
-
-      services.xserver.videoDrivers = [ "amdgpu" ];
 
       system.stateVersion = "26.05";
     };

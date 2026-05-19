@@ -27,6 +27,17 @@
         self.diskoConfigurations.hermes
       ];
 
+      services.displayManager = {
+        sddm = {
+          enable = true;
+          wayland.enable = true;
+        };
+        autoLogin = {
+          enable = true;
+          user = config.preferences.user.name;
+        };
+      };
+
       nix.settings.experimetal-features = [
         "nix-command"
         "flakes"

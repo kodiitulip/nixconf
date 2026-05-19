@@ -2,7 +2,17 @@
   flake.diskoConfigurations.hermes =
     { lib, ... }:
     {
+      fileSystems."/nix".neededForBoot = true;
       disko.devices = {
+        nodev = {
+          "/" = {
+            fsType = "tmpfs";
+            mountOptions = [
+              "size=25%"
+              "mode=755"
+            ];
+          };
+        };
         disk.main = {
           device = lib.mkDefault "/dev/sda";
           type = "disk";
@@ -35,43 +45,16 @@
                 name = "root";
                 size = "100%";
                 content = {
-                  type = "lvm_pv";
-                  vg = "btrfs_vg";
-                };
-              };
-            };
-          };
-        };
-        nodev = {
-          "/" = {
-            fsType = "tmpfs";
-            mountOptions = [
-              "size=25%"
-              "mode=755"
-            ];
-          };
-        };
-        lvm_vg = {
-          btrfs_vg = {
-            type = "lvm_vg";
-            lvs = {
-              root = {
-                size = "100%FREE";
-                content = {
                   type = "btrfs";
                   extraArgs = [ "-f" ];
 
                   subvolumes = {
-                    "/root" = {
-                      # mountpoint = "/";
-                    };
-
-                    "/persist" = {
+                    "/persistent" = {
                       mountOptions = [
-                        "subvol=persist"
+                        "subvol=persistent"
                         "noatime"
                       ];
-                      mountpoint = "/persist";
+                      mountpoint = "/persistent";
                     };
 
                     "/nix" = {
