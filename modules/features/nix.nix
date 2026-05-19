@@ -27,16 +27,11 @@
             "flakes"
           ];
         };
-
         optimise.automatic = true;
-
-        gc = {
-          automatic = true;
-          dates = "weekly";
-          options = "-d";
-        };
       };
+
       nixpkgs.config.allowUnfree = true;
+
       hjem.users.${config.preferences.user.name}.rum.programs.nix-your-shell = {
         integrations.nushell.enable = true;
         enable = true;
@@ -60,7 +55,7 @@
         manix
         nix-inspect
         nh
-        self.packages.${pkgs.system}.qalc
+        self.packages.${pkgs.stdenv.hostPlatform.system}.qalc
       ];
     };
 }

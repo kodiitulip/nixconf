@@ -8,14 +8,13 @@
         default = "kitty";
       };
       config = {
-        v2-settings = true;
         settings =
           let
             noctaliaExe = lib.getExe self.packages.${config.pkgs.stdenv.hostPlatform.system}.noctalia-shell;
             self' = self.packages.${config.pkgs.stdenv.hostPlatform.system};
           in
           {
-            prefer-no-csd = _: { };
+            prefer-no-csd = null;
             screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d %H-%M-%S.png";
 
             environment = {
@@ -26,31 +25,31 @@
               xcursor-theme = "BreezeX-RosePine-Linux";
               xcursor-size = 24;
 
-              hide-when-typing = _: { };
+              hide-when-typing = null;
               hide-after-inactive-ms = 1000;
             };
 
             hotkey-overlay = {
-              # skip-at-startup = _: { };
-              hide-not-bound = _: { };
+              # skip-at-startup = null;
+              hide-not-bound = null;
             };
 
             input = {
-              focus-follows-mouse = _: { };
+              focus-follows-mouse = null;
 
               keyboard = {
                 xkb = {
                   layout = "br";
                   options = "compose:rctrl";
                 };
-                numlock = _: { };
+                numlock = null;
                 repeat-rate = 40;
                 repeat-delay = 250;
               };
 
               touchpad = {
-                natural-scroll = _: { };
-                tap = _: { };
+                natural-scroll = null;
+                tap = null;
               };
 
               mouse = {
@@ -59,34 +58,29 @@
             };
 
             binds = {
-              "Mod+Return" = _: {
-                props = {
-                  hotkey-overlay-title = "Open Terminal";
-                  repeat = false;
-                };
-                content.spawn = config.terminal;
-              };
 
-              "Mod+Q".close-window = _: { };
-              "Mod+F".maximize-column = _: { };
-              "Mod+G".fullscreen-window = _: { };
-              "Mod+Shift+F".toggle-window-floating = _: { };
-              "Mod+C".center-column = _: { };
+              "Mod+Return".spawn = config.terminal;
 
-              "Mod+H".focus-column-left = _: { };
-              "Mod+L".focus-column-right = _: { };
-              "Mod+K".focus-window-up = _: { };
-              "Mod+J".focus-window-down = _: { };
+              "Mod+Q".close-window = null;
+              "Mod+F".maximize-column = null;
+              "Mod+G".fullscreen-window = null;
+              "Mod+Shift+F".toggle-window-floating = null;
+              "Mod+C".center-column = null;
 
-              "Mod+Left".focus-column-left = _: { };
-              "Mod+Right".focus-column-right = _: { };
-              "Mod+Up".focus-window-up = _: { };
-              "Mod+Down".focus-window-down = _: { };
+              "Mod+H".focus-column-left = null;
+              "Mod+L".focus-column-right = null;
+              "Mod+K".focus-window-up = null;
+              "Mod+J".focus-window-down = null;
 
-              "Mod+Shift+H".move-column-left = _: { };
-              "Mod+Shift+L".move-column-right = _: { };
-              "Mod+Shift+K".move-window-up = _: { };
-              "Mod+Shift+J".move-window-down = _: { };
+              "Mod+Left".focus-column-left = null;
+              "Mod+Right".focus-column-right = null;
+              "Mod+Up".focus-window-up = null;
+              "Mod+Down".focus-window-down = null;
+
+              "Mod+Shift+H".move-column-left = null;
+              "Mod+Shift+L".move-column-right = null;
+              "Mod+Shift+K".move-window-up = null;
+              "Mod+Shift+J".move-window-down = null;
 
               "Mod+1".focus-workspace = "w0";
               "Mod+2".focus-workspace = "w1";
@@ -109,32 +103,22 @@
               "Mod+Shift+8".move-column-to-workspace = "w7";
               "Mod+Shift+9".move-column-to-workspace = "w8";
               "Mod+Shift+0".move-column-to-workspace = "w9";
-              "Mod+S" = {
-                props.hotkey-overlay-title = "Open App Launcher";
-                content.spawn-sh = "${noctaliaExe} ipc call launcher toggle";
-              };
-              "Mod+V" = {
-                props.hotkey-overlay-title = "alsa-utils Capture Toggle";
-                content.spawn-sh = "${config.pkgs.alsa-utils}/bin/amixer sset Capture toggle";
-              };
-              "XF86AudioRaiseVolume" = {
-                props.hotkey-overlay-title = "Raise Volume";
-                content.spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+";
-              };
-              "XF86AudioLowerVolume" = {
-                props.hotkey-overlay-title = "Lower Volume";
-                content.spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-";
-              };
+
+              "Mod+S".spawn-sh = "${noctaliaExe} ipc call launcher toggle";
+              "Mod+V".spawn-sh = "${config.pkgs.alsa-utils}/bin/amixer sset Capture toggle";
+
+              "XF86AudioRaiseVolume".spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+";
+              "XF86AudioLowerVolume".spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-";
 
               "Mod+Ctrl+H".set-column-width = "-5%";
               "Mod+Ctrl+L".set-column-width = "+5%";
               "Mod+Ctrl+J".set-window-height = "-5%";
               "Mod+Ctrl+K".set-window-height = "+5%";
 
-              "Mod+WheelScrollDown".focus-column-left = _: { };
-              "Mod+WheelScrollUp".focus-column-right = _: { };
-              "Mod+Ctrl+WheelScrollDown".focus-workspace-down = _: { };
-              "Mod+Ctrl+WheelScrollUp".focus-workspace-up = _: { };
+              "Mod+WheelScrollDown".focus-column-left = null;
+              "Mod+WheelScrollUp".focus-column-right = null;
+              "Mod+Ctrl+WheelScrollDown".focus-workspace-down = null;
+              "Mod+Ctrl+WheelScrollUp".focus-workspace-up = null;
 
               "Mod+Ctrl+S".spawn-sh =
                 "${lib.getExe config.pkgs.grim} -l 0 - | ${config.pkgs.wl-clipboard}/bin/wl-copy";
@@ -149,21 +133,9 @@
                 }
               );
 
-              "Print" = _: {
-                props.repeat = false;
-                props.hotkey-overlay-title = "Screenshot";
-                content.screenshot = _: { };
-              };
-              "Mod+Print" = _: {
-                props.repeat = false;
-                props.hotkey-overlay-title = "Screenshot Window";
-                content.screenshot-window = _: { };
-              };
-              "Mod+Alt+Print" = _: {
-                props.repeat = false;
-                props.hotkey-overlay-title = "Screenshot Screen";
-                content.screenshot-screen = _: { };
-              };
+              "Print".screenshot = null;
+              "Mod+Print".screenshot-window = null;
+              "Mod+Alt+Print".screenshot-screen = null;
 
               "Mod+d".spawn-sh = self.mkWhichKeyExe config.pkgs [
                 {

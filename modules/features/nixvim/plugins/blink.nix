@@ -9,7 +9,6 @@
       plugins = {
         blink-cmp-dictionary.enable = true;
         blink-cmp-git.enable = true;
-        blink-cmp-spell.enable = true;
         blink-copilot.enable = false;
         blink-emoji.enable = false;
         blink-ripgrep.enable = true;

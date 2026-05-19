@@ -52,42 +52,25 @@
           };
 
           plugins = with pkgs.nushellPlugins; [
-            units
             semver
             query
             formats
           ];
 
-          settings = {
-            show_banner = false;
-            buffer_editor = "nvim";
-            use_kitty_protocol = true;
-            edit_mode = "vi";
-            cursor_shape = {
-              vi_insert = "line";
-              vi_normal = "blink_block";
-            };
-            completions.external = {
-              enable = true;
-              max_results = 200;
-            };
-            keybindings = [
-              {
-                name = "lfcd";
-                modifier = "control";
-                keycode = "char_o";
-                mode = [
-                  "emacs"
-                  "vi_normal"
-                  "vi_insert"
-                ];
-                event = {
-                  send = "executehostcommand";
-                  cmd = "lfcd";
-                };
-              }
-            ];
-          };
+          # settings = {
+          #   show_banner = false;
+          #   buffer_editor = "nvim";
+          #   use_kitty_protocol = true;
+          #   edit_mode = "vi";
+          #   cursor_shape = {
+          #     vi_insert = "line";
+          #     vi_normal = "blink_block";
+          #   };
+          #   completions.external = {
+          #     enable = true;
+          #     max_results = 200;
+          #   };
+          # };
 
           extraConfig = ''
             def --env get-env [name] { $env | get $name }

@@ -11,7 +11,8 @@
 
         installPhase = ''
           mkdir -pv $out/share/plymouth/themes
-          mv plymouth $out/share/plymouth/themes/sakura
+          ls
+          mv sakura $out/share/plymouth/themes/sakura
           find $out/share/plymouth/themes/ -name \*.plymouth -exec sed -i "s@\/usr\/@$out\/@" {} \;
         '';
       };

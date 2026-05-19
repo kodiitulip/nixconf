@@ -31,11 +31,6 @@
         self.diskoConfigurations.persephone
       ];
 
-      nix.settings.experimetal-features = [
-        "nix-command"
-        "flakes"
-      ];
-
       preferences.user = {
         name = "kodie";
         profile-image = ./icon.png;

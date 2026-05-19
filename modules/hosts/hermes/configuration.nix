@@ -39,11 +39,6 @@
         };
       };
 
-      nix.settings.experimetal-features = [
-        "nix-command"
-        "flakes"
-      ];
-
       preferences.user = {
         name = "hermes";
         profile-image = ./icon.png;
