@@ -9,5 +9,11 @@
           withVencord = true;
         })
       ];
+
+      persistance.user-directories = [
+        ".config/discord"
+        ".config/vesktop"
+        ".config/Vencord"
+      ];
     };
 }

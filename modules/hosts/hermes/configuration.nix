@@ -48,6 +48,17 @@
         profile-image = ./icon.png;
       };
 
+      users.users.${config.preferences.user.name} = {
+        isNormalUser = true;
+        description = "Hermes";
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+        ];
+        packages = [ ];
+        shell = pkgs.nushell;
+      };
+
       environment.systemPackages = with pkgs; [
         winetricks
         glib

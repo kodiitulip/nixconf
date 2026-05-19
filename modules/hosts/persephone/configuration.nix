@@ -49,7 +49,7 @@
         vim
       ];
 
-      persistance.cache.directories = [
+      persistance.user-directories = [
         ".config/obs-studio"
       ];
 

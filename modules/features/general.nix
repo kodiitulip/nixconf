@@ -22,14 +22,12 @@
           "wheel"
           "networkmanager"
         ];
-        shell = self.packages.${pkgs.system}.environment;
+        shell = pkgs.nushell;
 
         initialPassword = "${config.preferences.user.name}";
       };
 
-      persistance.data.directories = [
-        "nixconf"
-
+      persistance.user-directories = [
         "Pictures"
         "Music"
         "Videos"
@@ -37,13 +35,9 @@
         "Projects"
 
         ".ssh"
-      ];
-
-      persistance.cache.directories = [
         ".local/share/zoxide"
         ".local/share/direnv"
         ".local/share/nvim"
-        ".config/nvim"
       ];
     };
 }

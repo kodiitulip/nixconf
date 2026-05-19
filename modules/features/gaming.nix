@@ -89,7 +89,7 @@
 
       services.zerotierone.enable = true;
 
-      persistance.cache.directories = [
+      persistance.user-directories = [
         ".local/share/HyPrism"
         ".local/share/Hytale"
         ".local/share/hytale-launcher"
@@ -99,6 +99,13 @@
         ".local/share/bottles"
         ".local/share/PrismLauncher"
         ".config/r2modmanPlus-local"
+
+        ".config/VSLInstallations"
+        ".config/VSLBackups"
+        ".config/VSLauncher"
+        ".config/Ryujinx"
+        ".config/unity3d"
+        ".config/hydralauncher"
 
         ".local/share/Terraria"
 
