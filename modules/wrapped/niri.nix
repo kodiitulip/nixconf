@@ -179,7 +179,7 @@
                 {
                   key = "d";
                   desc = "Discord";
-                  cmd = "vesktop";
+                  cmd = "discord";
                 }
                 {
                   key = "m";

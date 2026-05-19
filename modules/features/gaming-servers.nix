@@ -13,7 +13,7 @@
         inputs.vintagestory-nix.overlays.default
       ];
 
-      environment.systemPackages = with pkgs; [ mcrcon ];
+      environment.systemPackages = with pkgs; [ tmux ];
 
       services.vintagestory = {
         enable = false;
@@ -21,48 +21,75 @@
         openFirewall = true;
       };
 
-      persistance.cache.directories = [ "/srv/minecraft-servers" ];
+      persistance.directories = [ "/srv/minecraft-servers" ];
 
-      services.minecraft-servers = {
-        enable = false;
-        eula = true;
-        openFirewall = true;
-        dataDir = "/srv/minecraft-servers";
-
-        servers.fossiled-steam = {
-          enable = false;
-          package = pkgs.neoforgeServers.neoforge-1_21_1;
-
-          serverProperties = {
-            server-port = 25565;
-            online-mode = false;
-            allow-flight = true;
-            difficulty = "hard";
-            motd = "Os Caba";
-            "rcon.port" = 25575;
-            enable-rcon = true;
-            "rcon.password" = "fossil";
-            simulation-distance = 8;
-            view-distance = 12;
+      services.minecraft-servers =
+        let
+          thems-the-rules = pkgs.fetchPackwizModpack {
+            url = "https://github.com/blossom-garden/thems-the-rules/raw/refs/tags/1.0.0/pack.toml";
+            packHash = "";
           };
+        in
+        {
+          enable = false;
+          eula = true;
+          openFirewall = true;
+          dataDir = "/srv/minecraft-servers";
 
-          symlinks =
-            let
-              modpack = pkgs.fetchPackwizModpack {
-                url = "https://github.com/blossom-garden/fossilized-steam/raw/refs/tags/2.0.0/pack.toml";
-                packHash = "sha256-miGmWh03eYmzz2Jsb6OZHuila4XMM6/yGmhNN7XtSFc=";
+          servers = {
+            ttrs-vini = {
+              enable = false;
+              autostart = false;
+              package = pkgs.neoforge-server-1_21_1;
+
+              serverProperties = {
+                server-port = 25565;
+                online-mode = false;
+                allow-flight = true;
+                difficulty = "hard";
+                motd = "Os Caba";
+                simulation-distance = 8;
+                view-distance = 10;
               };
-            in
-            {
-              "mods" = "${modpack}/mods";
-              "datapacks" = "${modpack}/datapacks";
-              "resourcepacks" = "${modpack}/resourcepacks";
-              "config" = "${modpack}/config";
-              "defaultoptions" = "${modpack}/defaultoptions";
-              "server-icon.png" = "${modpack}/icon.png";
+
+              symlinks = {
+                "mods" = "${thems-the-rules}/mods";
+                "datapacks" = "${thems-the-rules}/datapacks";
+                "resourcepacks" = "${thems-the-rules}/resourcepacks";
+                "server-icon.png" = "${thems-the-rules}/server-icon.png";
+              };
+              files = {
+                "config" = "${thems-the-rules}/config";
+              };
             };
+
+            ttrs-julia = {
+              enable = false;
+              autoStart = false;
+              package = pkgs.neoforge-server-1_21_1;
+
+              serverProperties = {
+                server-port = 25566;
+                online-mode = true;
+                allow-flight = true;
+                difficulty = "hard";
+                motd = "Judie";
+                simulation-distance = 8;
+                view-distance = 10;
+              };
+
+              symlinks = {
+                "mods" = "${thems-the-rules}/mods";
+                "datapacks" = "${thems-the-rules}/datapacks";
+                "resourcepacks" = "${thems-the-rules}/resourcepacks";
+                "server-icon.png" = "${thems-the-rules}/server-icon.png";
+              };
+              files = {
+                "config" = "${thems-the-rules}/config";
+              };
+            };
+          };
         };
-      };
 
     };
 }

@@ -6,6 +6,9 @@
 
   flake.nixosModules.hermes =
     { pkgs, config, ... }:
+    let
+      selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
+    in
     {
       imports = with self.nixosModules; [
         base
@@ -81,11 +84,9 @@
         binfmt.emulatedSystems = [ "aarch64-linux" ];
         plymouth = {
           enable = true;
-          theme = "pixels";
-          themePackages = with pkgs; [
-            (adi1090x-plymouth-themes.override {
-              selected_themes = [ "pixels" ];
-            })
+          theme = "sakura";
+          themePackages = with selfpkgs; [
+            sakura-plymouth
           ];
         };
         consoleLogLevel = 3;
@@ -96,7 +97,9 @@
       networking = {
         hostName = "hermes";
         networkmanager.enable = true;
-        hosts = { };
+        hosts = {
+          "192.168.0.104" = [ "persephone-pc" ];
+        };
 
         nftables.enable = true;
         firewall = {
@@ -116,7 +119,7 @@
 
         zerotierone = {
           joinNetworks = [
-            "b9a18a606fecb004"
+            "b9a18a606fecb004" # blossom-garden
           ];
         };
       };

@@ -120,6 +120,7 @@
         hostName = "persephone";
         networkmanager.enable = true;
         hosts = {
+          "192.168.0.105" = [ "hermes-pc" ];
           "172.24.145.167" = [ "julia-servers" ];
           "localhost:8080" = [ "dioxusdev" ];
           "localhost:3000" = [ "nextjsdev" ];
@@ -147,8 +148,8 @@
 
         zerotierone = {
           joinNetworks = [
-            "bb720a5aaedee869"
-            "b9a18a606fecb004"
+            "bb720a5aaedee869" # julia's network
+            "b9a18a606fecb004" # blossom-garden
           ];
         };
       };
