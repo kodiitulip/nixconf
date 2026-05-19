@@ -27,6 +27,7 @@
 
         # disko
         inputs.disko.nixosModules.disko
+        inputs.disko.flakeModule
         self.diskoConfigurations.persephone
       ];
 
