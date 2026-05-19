@@ -1,5 +1,5 @@
 {
-  flake.diskoConfigurations.hermes =
+  flake.diskoConfig.hermes =
     { lib, ... }:
     {
       fileSystems."/nix".neededForBoot = true;

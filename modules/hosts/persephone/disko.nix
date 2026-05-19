@@ -1,5 +1,5 @@
 {
-  flake.diskoConfigurations.persephone =
+  flake.diskoConfig.persephone =
     { lib, config, ... }:
     {
       fileSystems."/nix".neededForBoot = true;
