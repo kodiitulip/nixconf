@@ -1,4 +1,3 @@
-{ self, ... }:
 {
   flake.nixosModules.nushell =
     {
@@ -7,7 +6,6 @@
       ...
     }:
     {
-      imports = [ self.nixosModules.starship ];
       rum.programs = {
         zoxide = {
           enable = true;

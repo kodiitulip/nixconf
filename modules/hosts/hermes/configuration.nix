@@ -12,7 +12,7 @@
         general
         desktop
 
-        impermanence
+        preservation
 
         nixvim
         # gaming

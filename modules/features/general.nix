@@ -9,7 +9,6 @@
     {
       imports = [
         self.nixosModules.hjem
-        self.nixosModules.gtk
         self.nixosModules.git
         self.nixosModules.nix
         self.nixosModules.nushell

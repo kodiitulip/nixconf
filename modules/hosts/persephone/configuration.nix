@@ -15,7 +15,7 @@
         general
         desktop
 
-        impermanence
+        preservation
 
         discord
         pear-desktop
