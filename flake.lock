@@ -446,11 +446,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1779158506,
-        "narHash": "sha256-UsvCuaxQPL1CEOeDnIW/Cn97ozJuNE5cq4Rp5Yi5VxI=",
+        "lastModified": 1779174798,
+        "narHash": "sha256-tRkqndaReCnrznA1Uho+2RLqzceGyyM/Ppud3Eur5k4=",
         "owner": "BirdeeHub",
         "repo": "nix-wrapper-modules",
-        "rev": "6d6695d1140bdbdada1bb4519328818364ec9311",
+        "rev": "d155000fe30face179e81198efa4bf7d2de3919c",
         "type": "github"
       },
       "original": {
