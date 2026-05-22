@@ -57,20 +57,12 @@
             formats
           ];
 
-          # settings = {
-          #   show_banner = false;
-          #   buffer_editor = "nvim";
-          #   use_kitty_protocol = true;
-          #   edit_mode = "vi";
-          #   cursor_shape = {
-          #     vi_insert = "line";
-          #     vi_normal = "blink_block";
-          #   };
-          #   completions.external = {
-          #     enable = true;
-          #     max_results = 200;
-          #   };
-          # };
+          settings = {
+            show_banner = false;
+            buffer_editor = "nvim";
+            use_kitty_protocol = true;
+            edit_mode = "vi";
+          };
 
           extraConfig = ''
             def --env get-env [name] { $env | get $name }

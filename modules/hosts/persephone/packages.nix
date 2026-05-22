@@ -7,6 +7,7 @@
         mpv
         vlc
         protonmail-desktop
+        kdePackages.kate
       ];
     };
 }

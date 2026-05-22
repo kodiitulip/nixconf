@@ -21,7 +21,7 @@
         pear-desktop
 
         art
-        dev
+        gamedev
         gaming
         powersave
 
@@ -163,8 +163,10 @@
         xserver.videoDrivers = [ "amdgpu" ];
       };
 
-      xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-      xdg.portal.enable = true;
+      xdg.portal = {
+        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+        enable = true;
+      };
 
       hardware.graphics.enable = true;
 

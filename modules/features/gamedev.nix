@@ -1,18 +1,18 @@
 { self, ... }:
 {
-  flake.nixosModules.dev =
-    { pkgs, ... }:
+  flake.nixosModules.gamedev =
+    { pkgs, config, ... }:
     {
       imports = [
         self.nixosModules.nixvim
+        self.nixosModules.art
       ];
       environment.systemPackages = with pkgs; [
-        kdePackages.kate
         godot
-        penpot-desktop
+        material-maker
       ];
 
-      files.".local/share/godot/export_templates" = {
+      hjem.users.${config.preferences.user.name}.files.".local/share/godot/export_templates" = {
         source = "${pkgs.godot-export-templates-bin}/share/godot/export_templates";
         recursive = true;
       };
