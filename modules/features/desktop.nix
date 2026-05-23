@@ -11,10 +11,7 @@
         self.nixosModules.pipewire
       ];
 
-      programs.niri = {
-        enable = true;
-        package = selfpkgs.niri;
-      };
+      programs.niri.package = selfpkgs.niri;
 
       preferences.autostart = [ selfpkgs.noctalia-shell ];
 

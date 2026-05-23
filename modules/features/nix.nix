@@ -31,10 +31,17 @@
       };
 
       nixpkgs.config.allowUnfree = true;
-
-      hjem.users.${config.preferences.user.name}.rum.programs.nix-your-shell = {
-        integrations.nushell.enable = true;
-        enable = true;
+      hjem.users.${config.preferences.user.name} = {
+        xdg.config.files."direnv/direnv.toml".source = (pkgs.formats.toml { }).generate "direnv.toml" {
+          global = {
+            warn_timeout = "0s";
+            hide_env_diff = true;
+          };
+        };
+        rum.programs.nix-your-shell = {
+          integrations.nushell.enable = true;
+          enable = true;
+        };
       };
 
       programs.nh = {

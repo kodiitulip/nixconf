@@ -5,7 +5,6 @@
   ...
 }:
 let
-
   mkWhichKey =
     pkgs: menu:
     (self.wrapperModules.which-key.apply {

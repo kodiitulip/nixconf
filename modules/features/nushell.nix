@@ -44,9 +44,6 @@
             "4.." = "z ../../../..";
             "5.." = "z ../../../../";
 
-            garbage-collect = "sudo nix-collect-garbage -d";
-            rebuild-persephone = "sudo nixos-rebuild switch --flake ($env.NH_OS_FLAKE? | default ~/nixconf)#persephone";
-
             julia-join = "sudo zerotier-cli join bb720a5aaedee869";
             julia-leave = "sudo zerotier-cli leave bb720a5aaedee869";
           };
