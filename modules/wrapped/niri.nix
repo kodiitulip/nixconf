@@ -154,9 +154,14 @@
                   cmd = "discord";
                 }
                 {
-                  key = "m";
+                  key = "my";
                   desc = "Youtube Music";
                   cmd = "pear-desktop";
+                }
+                {
+                  key = "mp";
+                  desc = "Spotify";
+                  cmd = "spotify";
                 }
                 {
                   key = "s";

@@ -18,7 +18,7 @@
         preservation
 
         discord
-        pear-desktop
+        music
 
         art
         gamedev
