@@ -8,5 +8,9 @@
       path = ./dioxus;
       description = "A Dioxus project flake";
     };
+    godot = {
+      path = ./godot;
+      description = "Godot development environment";
+    };
   };
 }
