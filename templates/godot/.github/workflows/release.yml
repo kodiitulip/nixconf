@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  pname: "godot-game" # package name, preferably in kebab-case, WARN: MUST BE THE SAME AS THE PNAME ON THE FLAKE.NIX
+  pname: "new-godot-project" # package name, preferably in kebab-case, WARN: MUST BE THE SAME AS THE PNAME ON THE FLAKE.NIX
   itch-user: ""
   extra-channel: ["stable"]
 
