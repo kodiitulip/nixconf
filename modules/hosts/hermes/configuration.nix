@@ -18,8 +18,6 @@
         preservation
 
         nixvim
-        # gaming
-        gaming-servers
         powersave
 
         # disko
