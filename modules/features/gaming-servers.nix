@@ -26,7 +26,7 @@
         minecraft-servers =
           let
             thems-the-rules = pkgs.fetchPackwizModpack {
-              url = "https://github.com/blossom-garden/thems-the-rules/raw/refs/tags/1.0.0/pack.toml";
+              url = "https://github.com/blossom-garden/thems-the-rules/raw/refs/tags/1.1.0/pack.toml";
               packHash = "";
             };
           in
@@ -39,11 +39,11 @@
             servers = {
               ttrs-vini = {
                 enable = false;
-                autostart = false;
-                package = pkgs.neoforge-server-1_21_1;
+                autoStart = false;
+                package = pkgs.neoforgeServers.neoforge-1_21_1;
 
                 serverProperties = {
-                  server-port = 25565;
+                  server-port = 35565;
                   online-mode = false;
                   allow-flight = true;
                   difficulty = "hard";
@@ -66,10 +66,10 @@
               ttrs-julia = {
                 enable = false;
                 autoStart = false;
-                package = pkgs.neoforge-server-1_21_1;
+                package = pkgs.neoforgeServers.neoforge-1_21_1;
 
                 serverProperties = {
-                  server-port = 25566;
+                  server-port = 35566;
                   online-mode = true;
                   allow-flight = true;
                   difficulty = "hard";
