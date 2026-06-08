@@ -7,10 +7,7 @@
       ];
 
       plugins = {
-        blink-cmp-dictionary.enable = true;
         blink-cmp-git.enable = true;
-        blink-copilot.enable = false;
-        blink-emoji.enable = false;
         blink-ripgrep.enable = true;
         blink-cmp = {
           enable = true;
@@ -76,12 +73,10 @@
             sources = {
               default = [
                 "lsp"
-                "buffer"
                 "path"
                 "snippets"
-                "dictionary"
                 "git"
-                "spell"
+                "buffer"
                 "ripgrep"
               ];
               providers = {
@@ -90,17 +85,7 @@
                   module = "blink-ripgrep";
                   score_offset = 1;
                 };
-                dictionary = {
-                  name = "Dict";
-                  module = "blink-cmp-dictionary";
-                  min_keyword_length = 3;
-                };
                 lsp.score_offset = 4;
-                spell = {
-                  name = "Spell";
-                  module = "blink-cmp-spell";
-                  score_offset = 1;
-                };
                 git = {
                   name = "Git";
                   module = "blink-cmp-git";
@@ -183,7 +168,7 @@
                 };
               };
               trigger = {
-                show_in_snippet = false;
+                show_in_snippet = true;
               };
               documentation = {
                 auto_show = true;

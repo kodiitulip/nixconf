@@ -9,6 +9,7 @@
             "TelescopePrompt"
             "vim"
             "snacks_picker_list"
+            "snacks_layout_box"
           ];
         };
       };

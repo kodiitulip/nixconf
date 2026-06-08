@@ -2,6 +2,8 @@
 {
   flake.wrapperModules.noctalia-shell = _: {
     config = {
+      autoCopyConfig = true;
+      outOfStoreConfig = "~/.config/outofstore/noctalia-shell";
       colors = {
         mPrimary = self.theme.base08;
         mOnPrimary = self.theme.base00;
@@ -20,6 +22,7 @@
         mHover = self.theme.base0E;
         mOnHover = self.theme.base05;
       };
+      enableDumpScript = true;
       settings = {
         appLauncher = {
           customLaunchPrefix = "";

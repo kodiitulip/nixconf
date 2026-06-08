@@ -196,6 +196,7 @@
           };
           gdscript = {
             enable = true;
+            package = null;
             config = {
               cmd.__raw = "vim.lsp.rpc.connect('127.0.0.1', tonumber(os.getenv 'GDScript_Port' or '6005'))";
               on_attach.__raw = ''
@@ -208,22 +209,18 @@
               '';
             };
           };
-          superhtml.enable = true;
-          sqls.enable = true;
           nushell.enable = true;
+          nil_ls.enable = true;
+          nixd.enable = true;
           lua_ls.enable = true;
-          nil_ls = {
-            enable = true;
-            package = pkgs.nil;
-          };
-          nixd = {
-            enable = true;
-            package = pkgs.nixd;
-          };
-          ts_ls.enable = true;
           emmet_language_server.enable = true;
+          ts_ls = {
+            enable = true;
+            package = null;
+          };
           tailwindcss = {
             enable = true;
+            package = null;
             config = {
               filetypes = [
                 "aspnetcorerazor"
@@ -294,10 +291,22 @@
               };
             };
           };
-          rust_analyzer.enable = true;
-          marksman.enable = true;
-          jdtls.enable = true;
-          pyright.enable = true;
+          rust_analyzer = {
+            enable = true;
+            package = null;
+          };
+          marksman = {
+            enable = true;
+            package = null;
+          };
+          jdtls = {
+            enable = true;
+            package = null;
+          };
+          pyright = {
+            enable = true;
+            package = null;
+          };
           jsonls = {
             enable = true;
             config.filetypes = [
@@ -307,7 +316,10 @@
               "json.mcdatapack"
             ];
           };
-          helm_ls.enable = true;
+          helm_ls = {
+            enable = true;
+            package = null;
+          };
           yamlls = {
             enable = true;
             config = {

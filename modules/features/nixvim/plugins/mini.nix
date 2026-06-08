@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.nixvim-conf = _: {
+  flake.nixosModules.nixvim-conf = {
     plugins.mini = {
       enable = true;
       mockDevIcons = true;

@@ -52,7 +52,11 @@
       devShell = forAllSystems (
         pkgs: system:
         pkgs.mkShell {
-          buildInputs = with pkgs; [ godot ];
+          buildInputs = with pkgs; [
+            godot
+            gdscript-formatter
+            gdtoolkit_4
+          ];
         }
       );
     };

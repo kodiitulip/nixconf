@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.nixvim-conf = _: {
+  flake.nixosModules.nixvim-conf = {
     plugins.persistence = {
       enable = true;
       settings = { };

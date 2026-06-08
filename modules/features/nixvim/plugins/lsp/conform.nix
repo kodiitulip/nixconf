@@ -143,16 +143,13 @@
 
           formatters = {
             nufmt.command = lib.getExe pkgs.nufmt;
-            black.command = lib.getExe pkgs.black;
-            isort.command = lib.getExe pkgs.isort;
             nixfmt.command = lib.getExe pkgs.nixfmt;
-            alejandra.command = lib.getExe pkgs.alejandra;
             jq.command = lib.getExe pkgs.jq;
             prettierd.command = lib.getExe pkgs.prettierd;
             stylua.command = lib.getExe pkgs.stylua;
             shellcheck.command = lib.getExe pkgs.shellcheck;
-            shfmt.command = lib.getExe pkgs.shfmt;
             shellharden.command = lib.getExe pkgs.shellharden;
+            shfmt.command = lib.getExe pkgs.shfmt;
             dioxus-fmt = {
               command = "dx";
               args = [

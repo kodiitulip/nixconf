@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.nixvim-conf = _: {
+  flake.nixosModules.nixvim-conf = {
     plugins.todo-comments.enable = true;
     keymaps = [
       {

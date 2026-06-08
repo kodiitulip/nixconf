@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.nixvim-conf = _: {
+  flake.nixosModules.nixvim-conf = {
     autoGroups = {
       bufdelpost_autocmd = { };
       dashboard_delete_buffers = { };

@@ -74,7 +74,7 @@
         mindustry
         vintagestoryPackages.rustique
         vintagestoryPackages.vs-launcher
-        selfpkgs.ryujinx
+        ryubing
 
         dxvk
         gamescope
@@ -154,48 +154,6 @@
             [ "-skip=^${builtins.concatStringsSep "$|^" skippedTests}$" ];
           postInstall = "";
         });
-
-        ryujinx =
-          let
-            pname = "ryujinx";
-            version = "1.3.280";
-
-            src = pkgs.fetchurl {
-              url = "https://git.ryujinx.app/Ryubing/Canary/releases/download/${version}/ryujinx-canary-${version}-x64.AppImage";
-              hash = "sha256-WMJb9fsPB5hUI2SNapn6jN4+JZFhP096JVRp+iTggEg=";
-            };
-
-            contents = pkgs.appimageTools.extractType2 {
-              inherit pname version src;
-            };
-          in
-          pkgs.appimageTools.wrapType2 {
-            inherit pname version src;
-            extraPkgs =
-              pkgs: with pkgs; [
-                icu
-                lttng-ust
-              ];
-
-            extraInstallCommands = ''
-              mkdir -pv $out/share/applications $out/share/icons/hicolor/512x512/apps
-
-              install -m 444 ${contents}/Ryujinx.desktop \
-                $out/share/applications/${pname}.desktop
-              install -m 444 ${contents}/Ryujinx.svg \
-                $out/share/icons/hicolor/512x512/apps/${pname}.svg
-
-              substituteInPlace $out/share/applications/${pname}.desktop \
-                --replace-fail 'Exec=Ryujinx.sh' 'Exec=${pname}' \
-                --replace-fail 'Icon=Ryujinx' 'Icon=${pname}'
-            '';
-
-            meta = {
-              description = "Ryujinx is an open-source Nintendo Switch emulator, originally created by gdkchan, written in C#.";
-              homepage = "https://git.ryujinx.app/Ryubing";
-              platforms = [ "x86_64-linux" ];
-            };
-          };
 
         hyprism =
           let

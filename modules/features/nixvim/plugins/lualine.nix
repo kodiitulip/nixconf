@@ -1,5 +1,14 @@
 {
-  flake.nixosModules.nixvim-conf = _: {
+  flake.nixosModules.nixvim-conf = {
+    extraConfigLuaPre = ''
+      local lint_progress = function()
+        local linters = require("lint").get_running()
+        if #linters == 0 then
+            return "󰦕"
+        end
+        return "󱉶 " .. table.concat(linters, ", ")
+      end
+    '';
     plugins.lualine = {
       enable = true;
       settings = {
@@ -40,20 +49,14 @@
           ];
           lualine_c = [
             {
-              __unkeyed-1 = "diagnostics";
-              sources = [ "nvim_lsp" ];
+              __unkeyed-1 = "filename";
               symbols = {
-                error = " ";
-                warn = " ";
-                info = " ";
-                hint = "󰝶 ";
+                modified = "";
+                readonly = "";
+                unnamed = "";
+                newfile = "";
               };
             }
-            {
-              __unkeyed-1 = "navic";
-            }
-          ];
-          lualine_x = [
             {
               __unkeyed-1 = "filetype";
               icon_only = true;
@@ -64,23 +67,31 @@
               };
             }
             {
-              __unkeyed-1 = "filename";
-              path = 1;
+              __unkeyed-1 = "navic";
             }
-            # {
-            #   __unkeyed-1.__raw = ''
-            #     function()
-            #       local icon = " "
-            #       local status = require("copilot.api").status.data
-            #       return icon .. (status.message or " ")
-            #     end,
-            #
-            #     cond = function()
-            #      local ok, clients = pcall(vim.lsp.get_clients, { name = "copilot", bufnr = 0 })
-            #      return ok and #clients > 0
-            #     end,
-            #   '';
-            # }
+          ];
+          lualine_x = [
+            {
+              __unkeyed-1 = "diagnostics";
+              sources = [
+                "nvim_lsp"
+                "nvim_diagnostic"
+                "nvim_workspace_diagnostic"
+              ];
+              symbols = {
+                error = " ";
+                warn = " ";
+                info = " ";
+                hint = "󰝶 ";
+              };
+              update_in_insert = true;
+            }
+            {
+              __unkeyed-1 = "lint_progress";
+            }
+            {
+              __unkeyed-1 = "lsp_status";
+            }
           ];
           lualine_y = [
             {

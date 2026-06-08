@@ -11,6 +11,10 @@
         markdown = [ "markdownlint-cli2" ];
         gdscript = [ "gdlint" ];
         rust = [ "clippy" ];
+        ghaction = [ "actionlint" ];
+      };
+      linters = {
+
       };
     };
 

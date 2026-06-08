@@ -1,32 +1,11 @@
 {
-  flake.nixosModules.nixvim-conf = _: {
+  flake.nixosModules.nixvim-conf = {
     plugins.ts-comments = {
       enable = true;
 
       settings.lang = {
-        astro = "";
-        axaml = "";
-        blueprint = "// %s";
-        c = "// %s";
-        c_sharp = "// %s";
-        clojure = [
-          ";; %s"
-          "; %s"
-        ];
-        cpp = "// %s";
-        cs_project = "";
-        cue = "// %s";
-        fsharp = "// %s";
-        fsharp_project = "";
-        gleam = "// %s";
-        glimmer = "{{! %s }}";
-        graphql = "# %s";
-        handlebars = "{{! %s }}";
-        hcl = "# %s";
-        html = "";
-        hyprlang = "# %s";
+        html = "<!-- %s -->";
         ini = "; %s";
-        ipynb = "# %s";
         javascript = {
           __unkeyed-1 = "// %s";
           __unkeyed-2 = "/* %s */";
@@ -37,25 +16,13 @@
           spread_element = "// %s";
           statement_block = "// %s";
         };
-        kdl = "// %s";
-        php = "// %s";
-        rego = "# %s";
-        rescript = "// %s";
         rust = [
           "// %s"
           "/* %s */"
         ];
-        sql = "-- %s";
-        styled = "/* %s */";
-        svelte = "";
-        templ = {
-          __default = "// %s";
-          component_block = "";
-        };
-        terraform = "# %s";
         tsx = {
-          "/* %s */" = null;
-          __default = "// %s";
+          __unkeyed-1 = "// %s";
+          __unkeyed-2 = "/* %s */";
           call_expression = "// %s";
           jsx_attribute = "// %s";
           jsx_element = "{/* %s */}";
@@ -63,13 +30,10 @@
           spread_element = "// %s";
           statement_block = "// %s";
         };
-        twig = "{# %s #}";
         typescript = [
           "// %s"
           "/* %s */"
         ];
-        vue = "";
-        xaml = "";
       };
     };
   };
