@@ -5,11 +5,27 @@
       options.persistance = {
         enable = lib.mkEnableOption "enable persistance";
 
-        user = lib.mkOption {
-          default = config.preferences.user.name;
-          description = ''
-            Main user
-          '';
+        user = {
+          name = lib.mkOption {
+            default = config.preferences.user.name;
+            description = ''
+              Main user
+            '';
+          };
+
+          directories = lib.mkOption {
+            default = [ ];
+            description = ''
+              user directories to persist
+            '';
+          };
+
+          files = lib.mkOption {
+            default = [ ];
+            description = ''
+              user files to persist
+            '';
+          };
         };
 
         directories = lib.mkOption {
@@ -23,20 +39,6 @@
           default = [ ];
           description = ''
             files to persist
-          '';
-        };
-
-        user-directories = lib.mkOption {
-          default = [ ];
-          description = ''
-            user directories to persist
-          '';
-        };
-
-        user-files = lib.mkOption {
-          default = [ ];
-          description = ''
-            user files to persist
           '';
         };
       };

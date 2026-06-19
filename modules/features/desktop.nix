@@ -11,9 +11,13 @@
         self.nixosModules.pipewire
       ];
 
-      programs.niri.package = selfpkgs.niri;
-
-      preferences.autostart = [ selfpkgs.noctalia-shell ];
+      programs = {
+        niri.package = selfpkgs.niri;
+        nautilus-open-any-terminal = {
+          enable = true;
+          terminal = "kitty";
+        };
+      };
 
       environment.systemPackages =
         (with selfpkgs; [
@@ -21,7 +25,7 @@
           kitty
         ])
         ++ (with pkgs; [
-          kdePackages.dolphin
+          nautilus
         ]);
 
       fonts.packages = with pkgs; [
@@ -51,10 +55,22 @@
         LC_TIME = "pt_BR.UTF-8";
       };
 
-      xdg.icons.fallbackCursorThemes = [ "BreezeX-RosePine-Linux" ];
+      xdg = {
+        icons.fallbackCursorThemes = [ "BreezeX-RosePine-Linux" ];
+        portal.extraPortals = with pkgs; [
+          xdg-desktop-portal-gtk
+          xdg-desktop-portal-gnome
+        ];
+        portal.enable = true;
+      };
+
       console.keyMap = "br-abnt2";
 
-      services.upower.enable = true;
+      services = {
+        upower.enable = true;
+        gnome.sushi.enable = true;
+        gvfs.enable = true;
+      };
 
       security.polkit.enable = true;
 

@@ -57,7 +57,7 @@
 
       persistance = {
         enable = true;
-        user = config.preferences.user.name;
+        user.name = config.preferences.user.name;
       };
 
       programs = {
@@ -133,9 +133,6 @@
           ];
         };
       };
-
-      xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-      xdg.portal.enable = true;
 
       hardware.graphics.enable = true;
 

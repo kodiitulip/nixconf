@@ -163,10 +163,7 @@
         xserver.videoDrivers = [ "amdgpu" ];
       };
 
-      xdg.portal = {
-        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-        enable = true;
-      };
+      xdg.portal.enable = true;
 
       hardware.graphics.enable = true;
 

@@ -46,9 +46,9 @@
             ]
             ++ cfg.files;
 
-            users.${cfg.user} = {
-              files = cfg.user-files;
-              directories = [ "nixconf" ] ++ cfg.user-directories;
+            users.${cfg.user.name} = {
+              files = cfg.user.files;
+              directories = [ "nixconf" ] ++ cfg.user.directories;
             };
           };
 
