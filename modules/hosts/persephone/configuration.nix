@@ -35,6 +35,7 @@
         name = "kodie";
         profile-image = ./icon.png;
       };
+      persistance.enable = true;
 
       environment.systemPackages = with pkgs; [
         winetricks

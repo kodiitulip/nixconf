@@ -4,6 +4,15 @@
     {
       fileSystems."/nix".neededForBoot = true;
       disko.devices = {
+        nodev = {
+          "/" = {
+            fsType = "tmpfs";
+            mountOptions = [
+              "size=25%"
+              "mode=755"
+            ];
+          };
+        };
         disk.main = {
           device = lib.mkDefault "/dev/sda";
           type = "disk";
@@ -40,12 +49,17 @@
                   extraArgs = [ "-f" ];
 
                   subvolumes = {
-                    "/root" = {
-                      mountpoint = "/";
+                    "/persistent" = {
+                      mountOptions = [
+                        "subvol=persist"
+                        "noatime"
+                      ];
+                      mountpoint = "/persistent";
                     };
 
                     "/nix" = {
                       mountOptions = [
+                        "subvol=persist"
                         "compress=zstd"
                         "noatime"
                       ];

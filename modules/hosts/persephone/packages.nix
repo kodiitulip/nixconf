@@ -1,8 +1,8 @@
 {
   flake.nixosModules.persephone =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
-      environment.systemPackages = with pkgs; [
+      hjem.users.${config.preferences.user.name}.packages = with pkgs; [
         yt-dlp
         mpv
         vlc
