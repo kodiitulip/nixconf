@@ -8,7 +8,7 @@
         spicetify-cli
       ];
 
-      persistance.user-directories = [
+      persistance.user.directories = [
         ".config/YouTube Music"
       ];
     };

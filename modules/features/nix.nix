@@ -62,7 +62,6 @@
         manix
         nix-inspect
         nh
-        self.packages.${pkgs.stdenv.hostPlatform.system}.qalc
       ];
     };
 }

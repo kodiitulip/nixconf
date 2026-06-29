@@ -19,15 +19,6 @@
             vi = "nvim";
             vim = "nvim";
 
-            gs = "git status";
-            ga = "git add";
-            gc = "git commit -m";
-            gp = "git push";
-            gb = "git branch";
-            gsw = "git switch";
-            gd = "git diff";
-            gcl = "git clone";
-
             e = "exit";
             lg = "lazygit";
             reload = "exec nu";
@@ -43,9 +34,6 @@
             "3.." = "z ../../..";
             "4.." = "z ../../../..";
             "5.." = "z ../../../../";
-
-            julia-join = "sudo zerotier-cli join bb720a5aaedee869";
-            julia-leave = "sudo zerotier-cli leave bb720a5aaedee869";
           };
 
           plugins = with pkgs.nushellPlugins; [
@@ -80,6 +68,22 @@
 
             def ztls [] {
               sudo zerotier-cli listnetworks | str replace -m -r -a '200 listnetworks ' "" | lines | skip 1 | split column ' ' 'id' 'name' 'mac' 'status' 'type' 'dev' 'ip'
+            }
+
+            def "nu-complete-zoxide-path" [context: string] {
+              let parts = $context | split row " " | skip 1
+              {
+                options: {
+                  sort: false,
+                  completion_algorithm: fuzzy,
+                  case_sensitive: false,
+                },
+                completions: (^zoxide query --list --exclude $env.PWD -- ...$parts | lines | each { if ($in | str contains $env.PWD) {path relative-to $env.PWD} else $in | str replace '/home/kodie' '~' }),
+              }
+            }
+
+            def --env --wrapped z [...rest: string@"nu-complete-zoxide-path"] {
+              __zoxide_z ...$rest
             }
 
             print (greeter)

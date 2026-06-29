@@ -1,10 +1,6 @@
 {
   flake.nixosModules.nixvim-conf =
-    {
-      lib,
-      pkgs,
-      ...
-    }:
+    { lib, pkgs, ... }:
     {
       extraConfigLuaPre = ''
         local slow_format_filetypes = {}

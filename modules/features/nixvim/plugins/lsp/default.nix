@@ -177,23 +177,6 @@
             };
           };
           statix.enable = true;
-          spyglassmc_language_server = {
-            enable = true;
-            package = null;
-            config = {
-              cmd = [
-                "spyglassmc-language-server"
-                "--stdio"
-              ];
-              filetypes = [
-                "mcfunction"
-                "json.mcdatapack"
-                "mcdoc"
-                "json.mcmeta"
-              ];
-              root_markers = [ "pack.mcmeta" ];
-            };
-          };
           gdscript = {
             enable = true;
             package = null;
@@ -307,15 +290,7 @@
             enable = true;
             package = null;
           };
-          jsonls = {
-            enable = true;
-            config.filetypes = [
-              "json"
-              "jsonc"
-              "json.mcmeta"
-              "json.mcdatapack"
-            ];
-          };
+          jsonls.enable = true;
           helm_ls = {
             enable = true;
             package = null;

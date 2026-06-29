@@ -45,29 +45,9 @@
         vim
       ];
 
-      persistance.user-directories = [
-        ".config/obs-studio"
-      ];
-
       programs = {
         corectrl.enable = true;
-
         niri.enable = true;
-
-        obs-studio = {
-          enable = true;
-          plugins = with pkgs.obs-studio-plugins; [
-            wlrobs
-            waveform
-            obs-websocket
-            obs-backgroundremoval
-            obs-pipewire-audio-capture
-            obs-vkcapture
-            obs-tuna
-          ];
-          enableVirtualCamera = true;
-        };
-
         appimage = {
           enable = true;
           binfmt = true;
@@ -116,7 +96,6 @@
         hostName = "persephone";
         networkmanager.enable = true;
         hosts = {
-          "192.168.0.105" = [ "hermes-pc" ];
           "172.24.145.167" = [ "julia-servers" ];
           "localhost:8080" = [ "dioxusdev" ];
           "localhost:3000" = [ "nextjsdev" ];

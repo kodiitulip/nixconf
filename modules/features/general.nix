@@ -27,7 +27,7 @@
         initialPassword = "${config.preferences.user.name}";
       };
 
-      persistance.user-directories = [
+      persistance.user.directories = [
         "Pictures"
         "Music"
         "Videos"

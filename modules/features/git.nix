@@ -3,7 +3,7 @@
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [ gh ];
-      persistance.user-directories = [
+      persistance.user.directories = [
         ".config/gh"
       ];
       programs = {
